@@ -11,10 +11,11 @@ namespace Taffy.Web {
         readonly List<string> XPathsOfNodesToRedirect = new List<string> { "//*/enclosure", "//*/media:content" };
 
         protected void Page_Load(object sender, EventArgs e) {
-            var feedUrl = Request[Constants.FileSourceParameterName] ?? "http://feeds.thisamericanlife.org/talpodcast"; // "http://feeds.theonion.com/theonion/radionews";
+            var feedUrl = Request[Constants.FileSourceParameterName] ?? "http://feeds.waywordradio.org/awwwpodcast"; // "http://www.pwop.com/feed.aspx?show=dotnetrocks&filetype=master"; // "http://feeds.theonion.com/theonion/radionews"; // "http://feeds.thisamericanlife.org/talpodcast";
             var feedXmlDocument = GetFeedXmlDocument(feedUrl);
             var transformedFeedXml = Xml.GetTransformedXmlDocument(feedXmlDocument, XmlNamespacesToUseWhenSelectingNodes, XPathsOfNodesToRedirect, "~/File.aspx");
             Response.Clear();
+            Response.ContentType = "application/xml";
             transformedFeedXml.Save(Response.OutputStream);
             Response.End();
         }

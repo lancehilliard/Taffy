@@ -60,6 +60,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Feed.aspx" />
     <Content Include="File.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +84,9 @@
     </Compile>
     <Compile Include="File.aspx.designer.cs">
       <DependentUpon>File.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
