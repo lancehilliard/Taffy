@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hex.cs" />
     <Compile Include="ITransformer.cs" />
     <Compile Include="Mp3TransformerFactory.cs" />
     <Compile Include="Mp3Transformers\Mp3CommandLineTransformer.cs" />

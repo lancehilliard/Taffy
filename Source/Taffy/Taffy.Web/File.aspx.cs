@@ -28,6 +28,7 @@ namespace Taffy.Web {
             //    Cache.Remove(fileUrl);
             //}
             var originalFileName = Url.GetFileName(fileUrl);
+            Response.Clear();
             WriteBytesToResponse(transformedBytes, "audio/mpeg", originalFileName);
             Response.End();
         }
