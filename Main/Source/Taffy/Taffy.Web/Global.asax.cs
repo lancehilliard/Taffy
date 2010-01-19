@@ -10,6 +10,7 @@ using Taffy.Transform;
 
 namespace Taffy.Web {
     public class Global : System.Web.HttpApplication {
+        private static readonly Urly Urly = new Urly();
 
         protected void Application_Start(object sender, EventArgs e) {
 
@@ -45,8 +46,8 @@ namespace Taffy.Web {
             var startIndex = request.ApplicationPath.Equals("/") ? 1 : request.ApplicationPath.Length + 1;
             var localPathWithinApplication = localPath.Substring(startIndex);
             var lastSlashIndex = localPathWithinApplication.LastIndexOf("/");
-            var hexUrl = localPathWithinApplication.Substring(0, lastSlashIndex);
-            var url = Hex.ToString(hexUrl);
+            var urlKey = localPathWithinApplication.Substring(0, lastSlashIndex);
+            var url = Urly.Expand(urlKey);
             //var fileName = localPath.Substring(lastSlashIndex + 1);
             //var decodedUrlBytes = Convert.FromBase64String(base64Url);
             //var decodedUrlString = Encoding.ASCII.GetString(decodedUrlBytes);

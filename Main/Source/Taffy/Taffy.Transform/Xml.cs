@@ -27,7 +27,7 @@ namespace Taffy.Transform {
         private static void RedirectUrlValue(XmlNode xmlAttribute, string destinationRelativeUrlBase) {
             if (xmlAttribute != null) {
                 var originalUrl = xmlAttribute.Value;
-                var newAttributeValue = Url.GetFileUrl(originalUrl, destinationRelativeUrlBase); // GetFileUrlThatTakesAdvantageOfUrlRewriting(originalUrl);
+                var newAttributeValue = Url.GetFileUrl(originalUrl); // GetFileUrlThatTakesAdvantageOfUrlRewriting(originalUrl);
                 xmlAttribute.Value = newAttributeValue;
             }
         }
