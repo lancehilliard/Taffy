@@ -29,7 +29,7 @@ namespace Taffy.Web {
             var request = httpContext.Request;
             var path = request.Path;
             var pathFileName = VirtualPathUtility.GetFileName(path);
-            if (!pathFileName.Equals(Constants.FeedPageFileName)) {
+            if (!System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
                 var podcastUrl = GetPodcastUrl(request);
                 var fileUrl = Constants.FilePageVirtualPath + "?" + Constants.FileSourceParameterName + "=" + podcastUrl;
                 httpContext.RewritePath(fileUrl);
