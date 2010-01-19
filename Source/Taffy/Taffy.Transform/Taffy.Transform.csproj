@@ -57,6 +57,7 @@
     <Compile Include="Mp3Transformers\Mp3LibraryTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Url.cs" />
+    <Compile Include="Urly.cs" />
     <Compile Include="WavTransformers\WavLibraryTransformer.cs" />
     <Compile Include="WavTransformers\WavCommandLineTransformer.cs" />
     <Compile Include="WavTransformerFactory.cs" />

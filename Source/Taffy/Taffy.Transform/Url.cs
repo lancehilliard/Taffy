@@ -5,23 +5,19 @@ using Taffy.Configuration;
 
 namespace Taffy.Transform {
     public class Url {
-        public static string GetFileUrl(string originalUrl, string destinationRelativeUrlBase) {
-            var hexOriginalUrl = Hex.FromString(originalUrl);
-            //var base64OriginalUrl = GetBase64OriginalUrl(originalUrl);
+        static readonly Urly Urly = new Urly();
+
+        public static string GetFileUrl(string originalUrl) {
+            var originalUrlKey = Urly.Shorten(originalUrl);
             var originalUrlFileName = GetOriginalUrlFileName(originalUrl);
-            var fileRelativeUrl = GetRelativeUrl(hexOriginalUrl, originalUrlFileName);
+            var fileRelativeUrl = GetRelativeUrl(originalUrlKey, originalUrlFileName);
             var result = ConvertRelativeUrlToAbsoluteUrl(fileRelativeUrl);
             return result;
         }
 
-        private static string GetRelativeUrl(string base64OriginalUrl, string originalUriFileName) {
+        private static string GetRelativeUrl(string originalUrlKey, string originalUriFileName) {
             var applicationPath = HttpContext.Current.Request.ApplicationPath;
-            return applicationPath + "/" + base64OriginalUrl + "/" + originalUriFileName;
-        }
-
-        private static string GetBase64OriginalUrl(string originalUrl) {
-            var originalUrlBytes = Encoding.ASCII.GetBytes(originalUrl);
-            return Convert.ToBase64String(originalUrlBytes);
+            return applicationPath + "/" + originalUrlKey + "/" + originalUriFileName;
         }
 
         private static string GetOriginalUrlFileName(string originalUrl) {
