@@ -1,11 +1,10 @@
 using System;
 using Taffy.Configuration;
-using Taffy.Transform.WavTransformers;
 
-namespace Taffy.Transform {
-    public class WavTransformerFactory {
-        public static ITransformer GetTransformer(TransformerTypes transformerType) {
-            ITransformer result;
+namespace Taffy.Transform.Audio {
+    public class WavTransformerFactory : IAudioTransformerFactory {
+        public IAudioTransformer GetTransformer(TransformerTypes transformerType) {
+            IAudioTransformer result;
             switch (transformerType) {
                 case TransformerTypes.CommandLine:
                     result = new WavCommandLineTransformer();
@@ -14,7 +13,7 @@ namespace Taffy.Transform {
                     result = new WavLibraryTransformer();
                     break;
                 default:
-                    throw new Exception("Unknown transformer type.");
+                    throw new Exception(Constants.ErrorMessageUnknownTransformerType);
             }
             return result;
         }

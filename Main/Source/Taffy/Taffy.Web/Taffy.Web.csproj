@@ -64,6 +64,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -94,6 +97,10 @@
     <ProjectReference Include="..\Taffy.Configuration\Taffy.Configuration.csproj">
       <Project>{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}</Project>
       <Name>Taffy.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taffy.Memory\Taffy.Memory.csproj">
+      <Project>{99CA8B92-7AC6-442D-A873-2B80F52C9080}</Project>
+      <Name>Taffy.Memory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Taffy.Sys\Taffy.Sys.csproj">
       <Project>{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}</Project>

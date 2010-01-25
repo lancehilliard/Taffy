@@ -1,19 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.UI;
 using System.Xml;
 using Taffy.Configuration;
+using Taffy.Memory;
 using Taffy.Transform;
 
 namespace Taffy.Web {
-    public partial class Feed : Page {
-        readonly Dictionary<string, string> XmlNamespacesToUseWhenSelectingNodes = new Dictionary<string, string> { { "media", "http://search.yahoo.com/mrss/" } };
-        readonly List<string> XPathsOfNodesToRedirect = new List<string> { "//*/enclosure", "//*/media:content" };
+    public partial class Feed : BasePage {
+        private IXmlTransformer _xmlTransformer;
+        private readonly Dictionary<string, string> _xmlNamespacesToUseWhenSelectingNodes = new Dictionary<string, string> { { "media", "http://search.yahoo.com/mrss/" } };
+        private readonly List<string> _xPathsOfNodesToRedirect = new List<string> { "//*/enclosure", "//*/media:content" };
+
+        protected void Page_Init(object sender, EventArgs e) {
+            IApplicationCache applicationCache = new ApplicationCache();
+            IUrlyTransformer urlyTransformer = new UrlyTransformer(applicationCache);
+            IUrlTransformer urlTransformer = new UrlTransformer(urlyTransformer);
+            _xmlTransformer = new XmlTransformer(urlTransformer);
+        }
 
         protected void Page_Load(object sender, EventArgs e) {
-            var feedUrl = Request[Constants.FileSourceParameterName] ?? "http://feeds.waywordradio.org/awwwpodcast"; // "http://www.pwop.com/feed.aspx?show=dotnetrocks&filetype=master"; // "http://feeds.theonion.com/theonion/radionews"; // "http://feeds.thisamericanlife.org/talpodcast";
+            var feedUrl = Request[Constants.FileSourceParameterName];
+            if (feedUrl == null && IsDebugRequest()) {
+                feedUrl = "http://feeds.theonion.com/theonion/radionews"; // "http://feeds.waywordradio.org/awwwpodcast"; // "http://www.pwop.com/feed.aspx?show=dotnetrocks&filetype=master"; // "http://feeds.thisamericanlife.org/talpodcast";
+            }
             var feedXmlDocument = GetFeedXmlDocument(feedUrl);
-            var transformedFeedXml = Xml.GetTransformedXmlDocument(feedXmlDocument, XmlNamespacesToUseWhenSelectingNodes, XPathsOfNodesToRedirect, "~/File.aspx");
+            var transformedFeedXml = _xmlTransformer.GetTransformedXmlDocument(feedXmlDocument, _xmlNamespacesToUseWhenSelectingNodes, _xPathsOfNodesToRedirect, "~/File.aspx");
             Response.Clear();
             Response.ContentType = "application/xml";
             transformedFeedXml.Save(Response.OutputStream);

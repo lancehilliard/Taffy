@@ -11,11 +11,7 @@ namespace Taffy.Sys {
         }
 
         private static ProcessStartInfo GetProcessStartInfo(string fileName, string arguments) {
-            var processStartInfo = new ProcessStartInfo(fileName, arguments);
-            processStartInfo.UseShellExecute = false;
-            //processStartInfo.RedirectStandardOutput = true;
-            //processStartInfo.RedirectStandardError = true;
-            processStartInfo.CreateNoWindow = true;
+            var processStartInfo = new ProcessStartInfo(fileName, arguments) {UseShellExecute = false, CreateNoWindow = true};
             return processStartInfo;
         }
 
