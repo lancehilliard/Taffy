@@ -1,12 +1,10 @@
 using System;
-using System.Threading;
 using Taffy.Configuration;
-using Taffy.Transform.Mp3Transformers;
 
-namespace Taffy.Transform {
-    public class Mp3TransformerFactory {
-        public static ITransformer GetTransformer(TransformerTypes transformerType) {
-            ITransformer result;
+namespace Taffy.Transform.Audio {
+    public class Mp3TransformerFactory : IAudioTransformerFactory {
+        public IAudioTransformer GetTransformer(TransformerTypes transformerType) {
+            IAudioTransformer result;
             switch (transformerType) {
                 case TransformerTypes.CommandLine:
                     result = new Mp3CommandLineTransformer();
@@ -15,7 +13,7 @@ namespace Taffy.Transform {
                     result = new Mp3LibraryTransformer();
                     break;
                 default:
-                    throw new Exception("Unknown transformer type.");
+                    throw new Exception(Constants.ErrorMessageUnknownTransformerType);
             }
             return result;
         }

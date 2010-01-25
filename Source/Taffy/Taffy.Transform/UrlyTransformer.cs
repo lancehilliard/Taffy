@@ -1,13 +1,20 @@
-using System;
 using System.IO;
 using System.Net;
 using System.Web;
 using System.Xml;
+using Taffy.Memory;
 
 namespace Taffy.Transform {
-    public class Urly {
+    public class UrlyTransformer : IUrlyTransformer {
+        private readonly IApplicationCache _applicationCache;
         private const string UrlyShortenApiUrlTemplate = "http://ur.ly/new.xml?href={0}";
         private const string UrlyExpandApiUrlTemplate = "http://ur.ly/{0}.xml";
+        private const string UrlyCodeXmlAttributeName = "code";
+        private const string UrlyCodeHrefAttributeName = "href";
+
+        public UrlyTransformer(IApplicationCache applicationCache) {
+            _applicationCache = applicationCache;
+        }
 
         public string Expand(string code) {
             var expandApiUrl = GetExpandApiUrl(code);
@@ -22,13 +29,23 @@ namespace Taffy.Transform {
         }
 
         private UrlyData GetUrlyData(string apiUrl) {
-            var urlyXmlDocument = GetUrlyXmlDocument(apiUrl);
-            var code = urlyXmlDocument.DocumentElement.Attributes["code"].Value;
-            var href = urlyXmlDocument.DocumentElement.Attributes["href"].Value;
-            return new UrlyData{ Code = code, Href = href };
+            var result = _applicationCache.Get(apiUrl) as UrlyData;
+            if (result == null) {
+                var urlyXmlDocument = GetUrlyXmlDocument(apiUrl);
+                if (urlyXmlDocument != null) {
+                    var documentElement = urlyXmlDocument.DocumentElement;
+                    if (documentElement != null) {
+                        var code = documentElement.Attributes[UrlyCodeXmlAttributeName].Value;
+                        var href = documentElement.Attributes[UrlyCodeHrefAttributeName].Value;
+                        result = new UrlyData { Code = code, Href = href };
+                        _applicationCache.Add(apiUrl, result);
+                    }
+                }
+            }
+            return result;
         }
 
-        private XmlDocument GetUrlyXmlDocument(string apiUrl) {
+        private static XmlDocument GetUrlyXmlDocument(string apiUrl) {
             var request = WebRequest.Create(apiUrl);
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
@@ -39,19 +56,24 @@ namespace Taffy.Transform {
             return xmlDocument;
         }
 
-        private string GetShortenApiUrl(string href) {
+        private static string GetShortenApiUrl(string href) {
             var urlEncodedHref = HttpUtility.UrlEncode(href);
             return GetApiUrl(urlEncodedHref, UrlyShortenApiUrlTemplate);
         }
 
-        private string GetExpandApiUrl(string code) {
+        private static string GetExpandApiUrl(string code) {
             return GetApiUrl(code, UrlyExpandApiUrlTemplate);
         }
 
-        private string GetApiUrl(string href, string apiUrlTemplate) {
+        private static string GetApiUrl(string href, string apiUrlTemplate) {
             var result = string.Format(apiUrlTemplate, href);
             return result;
         }
+    }
+
+    public interface IUrlyTransformer {
+        string Shorten(string href);
+        string Expand(string code);
     }
 
     internal class UrlyData {

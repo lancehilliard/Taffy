@@ -2,8 +2,8 @@ using System;
 using Taffy.Configuration;
 using Taffy.Sys;
 
-namespace Taffy.Transform.WavTransformers {
-    public class WavCommandLineTransformer : ITransformer {
+namespace Taffy.Transform.Audio {
+    public class WavCommandLineTransformer : IAudioTransformer {
         public void ToWav(string mp3FileName, string wavFileName) {
             throw new NotImplementedException();
         }

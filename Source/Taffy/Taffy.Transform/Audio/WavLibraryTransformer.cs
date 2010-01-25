@@ -1,7 +1,7 @@
 using System;
 
-namespace Taffy.Transform.WavTransformers {
-    public class WavLibraryTransformer : ITransformer {
+namespace Taffy.Transform.Audio {
+    public class WavLibraryTransformer : IAudioTransformer {
         public void ToWav(string mp3FileName, string wavFileName) {
             throw new NotImplementedException();
         }
