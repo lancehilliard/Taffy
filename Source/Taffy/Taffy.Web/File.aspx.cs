@@ -73,7 +73,7 @@ namespace Taffy.Web {
                 wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName);
                 wavTransformer.ToMp3(stretchedWavTempFileName, stretchedMp3TempFileName);
                 sourceBytes = System.IO.File.ReadAllBytes(stretchedMp3TempFileName);
-                _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCachePodcastDownloads));
+                _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
                 Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName });
             }
             _applicationCache.Add(cacheKey, sourceBytes);

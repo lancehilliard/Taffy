@@ -15,13 +15,20 @@ namespace Taffy.Configuration {
             get { return ConfigurationManager.AppSettings["LameFileName"]; }
         }
 
-        public static int NumberOfHoursToCachePodcastDownloads {
-            get { return Convert.ToInt32(ConfigurationManager.AppSettings["NumberOfHoursToCachePodcastDownloads"] ?? "0"); }
+        public static int NumberOfHoursToCacheStretchedPodcasts {
+            get { return Convert.ToInt32(ConfigurationManager.AppSettings["NumberOfHoursToCacheStretchedPodcasts"] ?? Constants.NumberOfHoursToCacheStretchedPodcasts.ToString()); }
         }
 
         public static TransformerTypes TransformerType {
             get {
-                var transformerType = (TransformerTypes)Enum.Parse(typeof(TransformerTypes), ConfigurationManager.AppSettings["TransformerType"]);
+                TransformerTypes transformerType;
+                try {
+                    transformerType = (TransformerTypes)Enum.Parse(typeof(TransformerTypes), ConfigurationManager.AppSettings["TransformerType"]);
+                }
+                catch (Exception e) {
+                    // TODO logging
+                    transformerType = Constants.TransformerTypeDefault;
+                }
                 return transformerType;
             }
         }
