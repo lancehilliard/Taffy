@@ -1,5 +1,6 @@
 namespace Taffy.Configuration {
     public class Constants {
+        public const string RssUnknownLength = "0";
         public const string DebugUrlParameterName = "debug";
         public const string UrlQueryStringDelimiter = "?";
         public const string QueryStringNameValuePathDelimiter = "=";

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Xml;
+using Taffy.Configuration;
 
 namespace Taffy.Transform {
     public class XmlTransformer : IXmlTransformer {
@@ -30,7 +31,7 @@ namespace Taffy.Transform {
                     RedirectUrlValue(urlAttribute);
                     var lengthAttribute = enclosureNode.Attributes[RssLengthAttributeName];
                     if (lengthAttribute != null) {
-                        lengthAttribute.Value = "0";
+                        lengthAttribute.Value = Constants.RssUnknownLength;
                     }
                 }
             }
