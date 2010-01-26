@@ -17,7 +17,7 @@ namespace Taffy.Web {
             var request = httpContext.Request;
             var path = request.Path;
             var pathFileName = VirtualPathUtility.GetFileName(path);
-            if (!System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
+            if (!pathFileName.Equals(Constants.FavIconFilename) && !System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
                 var podcastUrl = GetPodcastUrl(request);
                 var fileUrl = Constants.FilePageVirtualPath + Constants.UrlQueryStringDelimiter + Constants.FileSourceParameterName + Constants.QueryStringNameValuePathDelimiter + podcastUrl;
                 httpContext.RewritePath(fileUrl);

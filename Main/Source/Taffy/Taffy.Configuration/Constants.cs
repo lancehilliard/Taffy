@@ -1,5 +1,8 @@
 namespace Taffy.Configuration {
     public class Constants {
+        public const TransformerTypes TransformerTypeDefault = TransformerTypes.CommandLine;
+        public const int NumberOfHoursToCacheStretchedPodcasts = 0;
+        public const string FavIconFilename = "favicon.ico";
         public const string RssUnknownLength = "0";
         public const string DebugUrlParameterName = "debug";
         public const string UrlQueryStringDelimiter = "?";

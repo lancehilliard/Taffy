@@ -31,7 +31,7 @@ namespace Taffy.Transform {
             return originalUriSegments[originalUriSegmentsCount - 1];
         }
 
-        private static string ConvertRelativeUrlToAbsoluteUrl(string relativeUrl) {
+        public string ConvertRelativeUrlToAbsoluteUrl(string relativeUrl) {
             var uri = HttpContext.Current.Request.Url;
             var result = uri.Scheme + Uri.SchemeDelimiter + uri.Host + UrlPortPrefix + uri.Port + VirtualPathUtility.ToAbsolute(relativeUrl);
             return result;
@@ -48,5 +48,6 @@ namespace Taffy.Transform {
     public interface IUrlTransformer {
         string GetFileUrl(string originalUrl);
         string GetFileName(string url);
+        string ConvertRelativeUrlToAbsoluteUrl(string relativeUrl);
     }
 }
