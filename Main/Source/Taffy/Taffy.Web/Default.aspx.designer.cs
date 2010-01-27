@@ -23,40 +23,31 @@ namespace Taffy.Web {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// FeedPageUrlLabel control.
+        /// UrlInputTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FeedPageUrlLabel;
+        protected global::System.Web.UI.WebControls.TextBox UrlInputTextBox;
         
         /// <summary>
-        /// SourceUrlHelpLabel control.
+        /// UrlEncodeButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SourceUrlHelpLabel;
+        protected global::System.Web.UI.WebControls.Button UrlEncodeButton;
         
         /// <summary>
-        /// SourceUrlExampleLabel control.
+        /// UrlEncodeResults control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SourceUrlExampleLabel;
-        
-        /// <summary>
-        /// SourceUrlEncodedExampleLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SourceUrlEncodedExampleLabel;
+        protected global::System.Web.UI.WebControls.Label UrlEncodeResults;
         
         /// <summary>
         /// Mpg123ExistsLabel control.
@@ -129,5 +120,41 @@ namespace Taffy.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label TransformerTypeLabel;
+        
+        /// <summary>
+        /// FeedPageUrlLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FeedPageUrlLabel;
+        
+        /// <summary>
+        /// SourceUrlHelpLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SourceUrlHelpLabel;
+        
+        /// <summary>
+        /// SourceUrlExampleLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SourceUrlExampleLabel;
+        
+        /// <summary>
+        /// SourceUrlEncodedExampleLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SourceUrlEncodedExampleLabel;
     }
 }

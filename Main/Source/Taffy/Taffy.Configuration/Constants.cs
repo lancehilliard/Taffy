@@ -1,5 +1,6 @@
 namespace Taffy.Configuration {
     public class Constants {
+        public const string WebResourceFilename = "WebResource.axd";
         public const TransformerTypes TransformerTypeDefault = TransformerTypes.CommandLine;
         public const int NumberOfHoursToCacheStretchedPodcasts = 0;
         public const string FavIconFilename = "favicon.ico";

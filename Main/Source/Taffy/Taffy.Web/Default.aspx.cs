@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using Taffy.Configuration;
 using Taffy.Transform;
 
 namespace Taffy.Web {
     public partial class _Default : BasePage {
+        private string _feedPathAbsoluteUrl;
         private const string Yes = "Yes";
         private const string No = "No";
         protected void Page_Load(object sender, EventArgs e) {
@@ -19,8 +21,8 @@ namespace Taffy.Web {
             NumberOfHoursToCacheStretchedPodcastsLabel.Text = Settings.NumberOfHoursToCacheStretchedPodcasts.ToString();
             TransformerTypeLabel.Text = Enum.GetName(typeof (TransformerTypes), Settings.TransformerType);
             IUrlTransformer urlTransformer = new UrlTransformer(null);
-            var feedPathAbsoluteUrl = urlTransformer.ConvertRelativeUrlToAbsoluteUrl("~/Feed.aspx");
-            var feedPageUriBuilder = new UriBuilder(feedPathAbsoluteUrl);
+            _feedPathAbsoluteUrl = urlTransformer.ConvertRelativeUrlToAbsoluteUrl("~/Feed.aspx");
+            var feedPageUriBuilder = new UriBuilder(_feedPathAbsoluteUrl);
             const string sourceUrlVariableName = "rssFeedSourceUrl";
             feedPageUriBuilder.Query = "source=&lt;" + sourceUrlVariableName + "&gt;";
             FeedPageUrlLabel.Text = feedPageUriBuilder.ToString();
@@ -29,8 +31,19 @@ namespace Taffy.Web {
             feedPageUriBuilder.Query = "source=" + Server.UrlEncode(sourceUrlExample);
             SourceUrlExampleLabel.Text = sourceUrlExample;
             SourceUrlEncodedExampleLabel.Text = feedPageUriBuilder.ToString();
+        }
 
-
+        protected void UrlEncodeButton_Click(object sender, EventArgs e) {
+            string resultText;
+            var urlInputText = UrlInputTextBox.Text;
+            if (Uri.IsWellFormedUriString(urlInputText, UriKind.Absolute)) {
+                var urlEncodedUrl = Server.UrlEncode(urlInputText);
+                resultText = _feedPathAbsoluteUrl + "?source=" + urlEncodedUrl;
+            }
+            else {
+                resultText = Messages.ErrorUrlNotWellFormed;
+            }
+            UrlEncodeResults.Text = resultText;
         }
     }
 }
