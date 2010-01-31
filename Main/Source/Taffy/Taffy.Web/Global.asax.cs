@@ -20,7 +20,7 @@ namespace Taffy.Web {
             var path = request.Path;
             var pathFileName = VirtualPathUtility.GetFileName(path);
             var isRequestForDefaultDocument = request.ApplicationPath.Equals("/" + pathFileName);
-            if (!IgnorableFileNames.Contains(pathFileName) && !isRequestForDefaultDocument && !System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
+            if (!path.Contains(Constants.ElmahFilename) && !IgnorableFileNames.Contains(pathFileName) && !isRequestForDefaultDocument && !System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
                 var podcastUrl = GetPodcastUrl(request);
                 var fileUrl = Constants.FilePageVirtualPath + Constants.UrlQueryStringDelimiter + Constants.FileSourceParameterName + Constants.QueryStringNameValuePathDelimiter + podcastUrl;
                 httpContext.RewritePath(fileUrl);
