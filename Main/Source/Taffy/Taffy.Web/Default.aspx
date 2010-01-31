@@ -58,6 +58,13 @@
         </table>
         <p>By giving your podcatcher* the Taffy Feed, you'll start hearing the audio of your podcasts at the new speed.</p>
         <p>* Note: When you give a Taffy Feed to your podcatcher, make sure you use the hostname/port at which it can access Taffy.</p>
+        <asp:Panel runat="server" ID="ElmahDisabledPanel">
+        <p>Taffy uses ELMAH to report on errors, but it has to be enabled before it will capture information about errors.  If you think Taffy is experiencing errors, you can <a href="http://taffy.codeplex.com/wikipage?title=EnablingElmah">read about enabling ELMAH</a>.</p>
+        </asp:Panel>
+        <asp:Panel runat="server" ID="ElmahEnabledPanel">
+        Taffy's ELMAH component is enabled.  You may <asp:HyperLink runat="server" ID="ElmahHyperLink" NavigateUrl="~/elmah.axd" Text="view recent errors" /> at anytime.
+        </asp:Panel>
+        
     </div>
     
 <%--
