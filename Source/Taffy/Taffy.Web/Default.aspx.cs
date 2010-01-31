@@ -6,20 +6,8 @@ using Taffy.Transform;
 namespace Taffy.Web {
     public partial class _Default : BasePage {
         private string _feedPathAbsoluteUrl;
-        private const string Yes = "Yes";
-        private const string No = "No";
         protected void Page_Load(object sender, EventArgs e) {
-            var mpg123Exists = System.IO.File.Exists(Settings.Mpg123FileName);
-            var soundstretchExists = System.IO.File.Exists(Settings.SoundStretchFileName);
-            var lameExists = System.IO.File.Exists(Settings.LameFileName);
-            Mpg123ExistsLabel.Text = mpg123Exists ? Yes : No;
-            SoundstretchExistsLabel.Text = soundstretchExists ? Yes : No;
-            LameExistsLabel.Text = lameExists ? Yes : No;
-            Mpg123ConfiguredPathLabel.Text = Settings.Mpg123FileName;
-            SoundstretchConfiguredPathLabel.Text = Settings.SoundStretchFileName;
             LameConfiguredPathLabel.Text = Settings.LameFileName;
-            NumberOfHoursToCacheStretchedPodcastsLabel.Text = Settings.NumberOfHoursToCacheStretchedPodcasts.ToString();
-            TransformerTypeLabel.Text = Enum.GetName(typeof (TransformerTypes), Settings.TransformerType);
             IUrlTransformer urlTransformer = new UrlTransformer(null);
             _feedPathAbsoluteUrl = urlTransformer.ConvertRelativeUrlToAbsoluteUrl("~/Feed.aspx");
             var feedPageUriBuilder = new UriBuilder(_feedPathAbsoluteUrl);
@@ -31,6 +19,21 @@ namespace Taffy.Web {
             feedPageUriBuilder.Query = "source=" + Server.UrlEncode(sourceUrlExample);
             SourceUrlExampleLabel.Text = sourceUrlExample;
             SourceUrlEncodedExampleLabel.Text = feedPageUriBuilder.ToString();
+            const string dependenciesDownloadUrl = "http://taffy.codeplex.com/wikipage?title=DependencyDownloads";
+            LameDownloadHyperLink.NavigateUrl = dependenciesDownloadUrl;
+            //var mpg123Exists = System.IO.File.Exists(Settings.Mpg123FileName);
+            //var soundstretchExists = System.IO.File.Exists(Settings.SoundStretchFileName);
+            var lameMissing = !System.IO.File.Exists(Settings.LameFileName);
+            LameNotInstalledContainer.Visible = lameMissing;
+            //Mpg123ExistsLabel.Text = mpg123Exists ? Yes : No;
+            //SoundstretchExistsLabel.Text = soundstretchExists ? Yes : No;
+            //Mpg123ConfiguredPathLabel.Text = Settings.Mpg123FileName;
+            //SoundstretchConfiguredPathLabel.Text = Settings.SoundStretchFileName;
+            //Mpg123DownloadHyperLink.NavigateUrl = dependenciesDownloadUrl;
+            //SoundstretchDownloadHyperLink.NavigateUrl = dependenciesDownloadUrl;
+            //LameExistsLabel.Text = lameExists ? Yes : No;
+            //NumberOfHoursToCacheStretchedPodcastsLabel.Text = Settings.NumberOfHoursToCacheStretchedPodcasts.ToString();
+            //TransformerTypeLabel.Text = Enum.GetName(typeof(TransformerTypes), Settings.TransformerType);
         }
 
         protected void UrlEncodeButton_Click(object sender, EventArgs e) {

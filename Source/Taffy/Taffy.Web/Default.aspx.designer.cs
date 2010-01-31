@@ -23,6 +23,51 @@ namespace Taffy.Web {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// LameNotInstalledContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel LameNotInstalledContainer;
+        
+        /// <summary>
+        /// LameDownloadHyperLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink LameDownloadHyperLink;
+        
+        /// <summary>
+        /// LameConfiguredPathLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LameConfiguredPathLabel;
+        
+        /// <summary>
+        /// ReloadLinkButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ReloadLinkButton;
+        
+        /// <summary>
+        /// TransformInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel TransformInput;
+        
+        /// <summary>
         /// UrlInputTextBox control.
         /// </summary>
         /// <remarks>
@@ -47,79 +92,7 @@ namespace Taffy.Web {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UrlEncodeResults;
-        
-        /// <summary>
-        /// Mpg123ExistsLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Mpg123ExistsLabel;
-        
-        /// <summary>
-        /// Mpg123ConfiguredPathLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Mpg123ConfiguredPathLabel;
-        
-        /// <summary>
-        /// SoundstretchExistsLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SoundstretchExistsLabel;
-        
-        /// <summary>
-        /// SoundstretchConfiguredPathLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SoundstretchConfiguredPathLabel;
-        
-        /// <summary>
-        /// LameExistsLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LameExistsLabel;
-        
-        /// <summary>
-        /// LameConfiguredPathLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LameConfiguredPathLabel;
-        
-        /// <summary>
-        /// NumberOfHoursToCacheStretchedPodcastsLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NumberOfHoursToCacheStretchedPodcastsLabel;
-        
-        /// <summary>
-        /// TransformerTypeLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TransformerTypeLabel;
+        protected global::System.Web.UI.WebControls.TextBox UrlEncodeResults;
         
         /// <summary>
         /// FeedPageUrlLabel control.

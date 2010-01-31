@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
-using System.Web.UI;
 using Taffy.Configuration;
 using Taffy.Memory;
 using Taffy.Sys;
@@ -73,14 +72,16 @@ namespace Taffy.Web {
                 wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName);
                 wavTransformer.ToMp3(stretchedWavTempFileName, stretchedMp3TempFileName);
                 sourceBytes = System.IO.File.ReadAllBytes(stretchedMp3TempFileName);
-                _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
+                if (sourceBytes.Length > 0) {
+                    _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
+                }
                 Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName });
             }
             _applicationCache.Add(cacheKey, sourceBytes);
         }
 
         private void WriteBytesToResponse(byte[] sourceBytes) {
-            if (sourceBytes != null) {
+            if (sourceBytes != null && sourceBytes.Length > 0) {
                 Response.AddHeader(Constants.ResponseContentTypeHeaderName, sourceBytes.Length.ToString());
                 using (var sourceStream = new MemoryStream(sourceBytes, false)) {
                     sourceStream.WriteTo(Response.OutputStream);

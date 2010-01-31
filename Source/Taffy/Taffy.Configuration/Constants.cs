@@ -1,5 +1,8 @@
 namespace Taffy.Configuration {
     public class Constants {
+        public const string LameVirtualPathFileName = "~/tools/lame.exe";
+        public const string SoundStretchVirtualPathFileName = "~/tools/soundstretch.exe";
+        public const string Mpg123VirtualPathFileName = "~/tools/mpg123.exe";
         public const string WebResourceFilename = "WebResource.axd";
         public const TransformerTypes TransformerTypeDefault = TransformerTypes.CommandLine;
         public const int NumberOfHoursToCacheStretchedPodcasts = 0;
