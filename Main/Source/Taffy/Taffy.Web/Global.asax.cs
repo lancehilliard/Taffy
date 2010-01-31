@@ -11,6 +11,7 @@ namespace Taffy.Web {
         private static readonly List<string> IgnorableFileNames = new List<string> { Constants.FavIconFilename, Constants.WebResourceFilename };
 
         protected void Application_BeginRequest(object sender, EventArgs e) {
+            throw new Exception("test");
             RewriteUrl();
         }
 
@@ -19,7 +20,8 @@ namespace Taffy.Web {
             var request = httpContext.Request;
             var path = request.Path;
             var pathFileName = VirtualPathUtility.GetFileName(path);
-            if (!IgnorableFileNames.Contains(pathFileName) && !pathFileName.Equals(Constants.FavIconFilename) && !System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
+            var isRequestForDefaultDocument = request.ApplicationPath.Equals("/" + pathFileName);
+            if (!IgnorableFileNames.Contains(pathFileName) && !isRequestForDefaultDocument && !System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
                 var podcastUrl = GetPodcastUrl(request);
                 var fileUrl = Constants.FilePageVirtualPath + Constants.UrlQueryStringDelimiter + Constants.FileSourceParameterName + Constants.QueryStringNameValuePathDelimiter + podcastUrl;
                 httpContext.RewritePath(fileUrl);

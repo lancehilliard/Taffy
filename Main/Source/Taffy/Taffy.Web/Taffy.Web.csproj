@@ -62,6 +62,11 @@
     <Content Include="Feed.aspx" />
     <Content Include="File.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="tools\libltdl-7.dll" />
+    <Content Include="tools\libmpg123-0.dll" />
+    <Content Include="tools\mpg123.exe" />
+    <Content Include="tools\readme.txt" />
+    <Content Include="tools\soundstretch.exe" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +133,7 @@
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3655</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <DevelopmentServerVPath>/TaffyTest</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
