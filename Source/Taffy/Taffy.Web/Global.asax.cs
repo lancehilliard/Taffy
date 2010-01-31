@@ -11,7 +11,6 @@ namespace Taffy.Web {
         private static readonly List<string> IgnorableFileNames = new List<string> { Constants.FavIconFilename, Constants.WebResourceFilename };
 
         protected void Application_BeginRequest(object sender, EventArgs e) {
-            throw new Exception("test");
             RewriteUrl();
         }
 
