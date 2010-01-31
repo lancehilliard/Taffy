@@ -1,5 +1,6 @@
 namespace Taffy.Configuration {
     public class Constants {
+        public const string ElmahFilename = "elmah.axd";
         public const string LameVirtualPathFileName = "~/tools/lame.exe";
         public const string SoundStretchVirtualPathFileName = "~/tools/soundstretch.exe";
         public const string Mpg123VirtualPathFileName = "~/tools/mpg123.exe";
