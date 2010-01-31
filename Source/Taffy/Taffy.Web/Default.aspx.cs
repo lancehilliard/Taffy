@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net;
 using Taffy.Configuration;
 using Taffy.Transform;
 
@@ -7,8 +8,14 @@ namespace Taffy.Web {
     public partial class _Default : BasePage {
         private string _feedPathAbsoluteUrl;
         protected void Page_Load(object sender, EventArgs e) {
-            LameConfiguredPathLabel.Text = Settings.LameFileName;
             IUrlTransformer urlTransformer = new UrlTransformer(null);
+            var requestUriString = urlTransformer.ConvertRelativeUrlToAbsoluteUrl("~/elmah.axd");
+            bool elmahIsOnline = ElmahIsOnline(requestUriString);
+            ElmahEnabledPanel.Visible = elmahIsOnline;
+            ElmahDisabledPanel.Visible = !elmahIsOnline;
+
+
+            LameConfiguredPathLabel.Text = Settings.LameFileName;
             _feedPathAbsoluteUrl = urlTransformer.ConvertRelativeUrlToAbsoluteUrl("~/Feed.aspx");
             var feedPageUriBuilder = new UriBuilder(_feedPathAbsoluteUrl);
             const string sourceUrlVariableName = "rssFeedSourceUrl";
@@ -47,6 +54,19 @@ namespace Taffy.Web {
                 resultText = Messages.ErrorUrlNotWellFormed;
             }
             UrlEncodeResults.Text = resultText;
+        }
+
+        private bool ElmahIsOnline(string requestUriString) {
+            bool result;
+            var webRequest = WebRequest.Create(requestUriString);
+            try {
+                webRequest.GetResponse();
+                result = true;
+            }
+            catch (Exception e) {
+                result = false;
+            }
+            return result;
         }
     }
 }

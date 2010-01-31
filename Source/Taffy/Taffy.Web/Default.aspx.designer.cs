@@ -95,6 +95,33 @@ namespace Taffy.Web {
         protected global::System.Web.UI.WebControls.TextBox UrlEncodeResults;
         
         /// <summary>
+        /// ElmahDisabledPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ElmahDisabledPanel;
+        
+        /// <summary>
+        /// ElmahEnabledPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ElmahEnabledPanel;
+        
+        /// <summary>
+        /// ElmahHyperLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ElmahHyperLink;
+        
+        /// <summary>
         /// FeedPageUrlLabel control.
         /// </summary>
         /// <remarks>
