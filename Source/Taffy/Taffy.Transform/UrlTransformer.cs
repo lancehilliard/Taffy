@@ -37,6 +37,15 @@ namespace Taffy.Transform {
             return result;
         }
 
+        public string GetFeedUrl(string originalUrl, string taffyAddress) {
+            if (!taffyAddress.EndsWith(Constants.UrlPathSeparator)) {
+                taffyAddress += Constants.UrlPathSeparator;
+            }
+            var urlEncodedOriginalUrl = HttpUtility.UrlEncode(originalUrl);
+            var result = taffyAddress + Constants.FeedFileName + Constants.UrlQueryStringDesignator + Constants.FileSourceParameterName + Constants.QueryStringNameValuePairDelimiter + urlEncodedOriginalUrl;
+            return result;
+        }
+
         public string GetFileName(string url) {
             var sourceUri = new Uri(url);
             var segments = sourceUri.Segments;
@@ -49,5 +58,6 @@ namespace Taffy.Transform {
         string GetFileUrl(string originalUrl);
         string GetFileName(string url);
         string ConvertRelativeUrlToAbsoluteUrl(string relativeUrl);
+        string GetFeedUrl(string originalUrl, string taffyAddress);
     }
 }

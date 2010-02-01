@@ -24,9 +24,9 @@ namespace Taffy.Web {
                 feedUrl = "http://www.npr.org/rss/podcast.php?id=510208"; // "http://feeds.theonion.com/theonion/radionews"; // "http://feeds.waywordradio.org/awwwpodcast"; // "http://www.pwop.com/feed.aspx?show=dotnetrocks&filetype=master"; // "http://feeds.thisamericanlife.org/talpodcast";
             }
             var feedXmlDocument = GetFeedXmlDocument(feedUrl);
-            var transformedFeedXml = _xmlTransformer.GetTransformedXmlDocument(feedXmlDocument, _xmlNamespacesToUseWhenSelectingNodes, _xPathsOfNodesToRedirect, "~/File.aspx");
+            var transformedFeedXml = _xmlTransformer.GetTransformedFeedXmlDocument(feedXmlDocument, _xmlNamespacesToUseWhenSelectingNodes, _xPathsOfNodesToRedirect, "~/File.aspx");
             Response.Clear();
-            Response.ContentType = "application/xml";
+            Response.ContentType = Constants.XmlResponseContentType;
             transformedFeedXml.Save(Response.OutputStream);
             Response.End();
         }

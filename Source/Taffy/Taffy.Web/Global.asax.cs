@@ -22,7 +22,7 @@ namespace Taffy.Web {
             var isRequestForDefaultDocument = request.ApplicationPath.Equals("/" + pathFileName);
             if (!path.Contains(Constants.ElmahFilename) && !IgnorableFileNames.Contains(pathFileName) && !isRequestForDefaultDocument && !System.IO.File.Exists(HttpContext.Current.Server.MapPath(pathFileName))) {
                 var podcastUrl = GetPodcastUrl(request);
-                var fileUrl = Constants.FilePageVirtualPath + Constants.UrlQueryStringDelimiter + Constants.FileSourceParameterName + Constants.QueryStringNameValuePathDelimiter + podcastUrl;
+                var fileUrl = Constants.FilePageVirtualPath + Constants.UrlQueryStringDesignator + Constants.FileSourceParameterName + Constants.QueryStringNameValuePairDelimiter + podcastUrl;
                 httpContext.RewritePath(fileUrl);
             }
         }
