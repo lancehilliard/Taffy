@@ -56,7 +56,7 @@ namespace Taffy.Web {
             Response.BufferOutput = false;
             Response.Clear();
             Response.ContentType = Constants.Mp3ResponseContentType;
-            var contentDisposition = string.Format(Constants.Mp3ResponseContentDispositionHeaderValueTemplate, originalFileName);
+            var contentDisposition = string.Format(Constants.FilenameResponseContentDispositionHeaderValueTemplate, originalFileName);
             Response.AddHeader(Constants.ResponseContentDispositionHeaderName, contentDisposition);
         }
 
@@ -82,7 +82,7 @@ namespace Taffy.Web {
 
         private void WriteBytesToResponse(byte[] sourceBytes) {
             if (sourceBytes != null && sourceBytes.Length > 0) {
-                Response.AddHeader(Constants.ResponseContentTypeHeaderName, sourceBytes.Length.ToString());
+                Response.AddHeader(Constants.ResponseContentLengthHeaderName, sourceBytes.Length.ToString());
                 using (var sourceStream = new MemoryStream(sourceBytes, false)) {
                     sourceStream.WriteTo(Response.OutputStream);
                 }

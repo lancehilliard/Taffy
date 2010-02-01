@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{99CA8B92-7AC6-442D-A873-2B80F52C9080}</ProjectGuid>
+    <ProjectGuid>{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Taffy.Memory</RootNamespace>
-    <AssemblyName>Taffy.Memory</AssemblyName>
+    <RootNamespace>Taffy.Data</RootNamespace>
+    <AssemblyName>Taffy.Data</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -39,7 +39,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -50,15 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationCache.cs" />
+    <Compile Include="TaffyFeedOpml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserCache.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Taffy.Data\Taffy.Data.csproj">
-      <Project>{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}</Project>
-      <Name>Taffy.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
