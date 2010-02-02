@@ -2,6 +2,7 @@ using System;
 using System.Configuration;
 using System.Web;
 using System.Web.Hosting;
+using Elmah;
 
 namespace Taffy.Configuration {
     public class Settings {
@@ -37,7 +38,7 @@ namespace Taffy.Configuration {
                     transformerType = (TransformerTypes)Enum.Parse(typeof(TransformerTypes), ConfigurationManager.AppSettings["TransformerType"]);
                 }
                 catch (Exception e) {
-                    // TODO logging
+                    ErrorSignal.FromCurrentContext().Raise(e);
                     transformerType = Constants.TransformerTypeDefault;
                 }
                 return transformerType;

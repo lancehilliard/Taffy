@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Xml;
+using Elmah;
 using Taffy.Configuration;
 using Taffy.Data;
 using Taffy.Memory;
 using Taffy.Transform;
 
 namespace Taffy.Web {
-    public partial class CreateFeed : System.Web.UI.Page {
+    public partial class CreateFeed : BasePage {
         private IUrlTransformer _urlTransformer;
         private IUserCache _userCache;
         protected const string PodcatcherTaffyAddressTextBoxWatermark = "http://example.com/Taffy/";
@@ -19,15 +20,38 @@ namespace Taffy.Web {
 
         protected void Page_Load(object sender, EventArgs e) {
             RemoveWatermarks();
-            if (OpmlFileUpload.HasFile) {
-                TaffyFeedOpml result = null;
-                IXmlTransformer xmlTransformer = new XmlTransformer(_urlTransformer);
-                var opmlXmlDocument = new XmlDocument();
-                opmlXmlDocument.Load(OpmlFileUpload.FileContent);
-                var transformedOpmlXmlDocument = xmlTransformer.GetTransformedOpmlXmlDocument(opmlXmlDocument, PodcatcherTaffyAddressTextBox.Text);
-                result = new TaffyFeedOpml { Filename = Constants.OpmlFilenamePrefix + OpmlFileUpload.FileName, Contents = transformedOpmlXmlDocument.InnerXml };
-                _userCache.TaffyFeedOpml = result;
+            if (IsPostBack) {
+                HandlePostBack();
             }
+        }
+
+        private void HandlePostBack() {
+            if (IsUrlAbsoluteAndValid(PodcatcherTaffyAddressTextBox.Text)) {
+                if (OpmlFileUpload.HasFile) {
+                    ProcessOpmlFileUpload();
+                }
+            }
+            else {
+                DisplayError(Messages.ErrorInvalidPodcatcherTaffyAddress, null);
+            }
+        }
+
+        private void ProcessOpmlFileUpload() {
+            try {
+                _userCache.TaffyFeedOpml = GenerateTaffyOpmlFile();
+            }
+            catch (Exception exception) {
+                DisplayError(Messages.ErrorUnableToCreateOpmlFile, exception);
+            }
+        }
+
+        private TaffyFeedOpml GenerateTaffyOpmlFile() {
+            IXmlTransformer xmlTransformer = new XmlTransformer(_urlTransformer);
+            var opmlXmlDocument = new XmlDocument();
+            opmlXmlDocument.Load(OpmlFileUpload.FileContent);
+            var transformedOpmlXmlDocument = xmlTransformer.GetTransformedOpmlXmlDocument(opmlXmlDocument, PodcatcherTaffyAddressTextBox.Text);
+            var result = new TaffyFeedOpml { Filename = Constants.OpmlFilenamePrefix + OpmlFileUpload.FileName, Contents = transformedOpmlXmlDocument.InnerXml };
+            return result;
         }
 
         private void RemoveWatermarks() {
@@ -40,25 +64,39 @@ namespace Taffy.Web {
         }
 
         protected void UrlEncodeButton_Click(object sender, EventArgs e) {
-            string resultText;
+            try {
+                UrlEncodeResults.Text = GetEncodedUrl();
+            }
+            catch (Exception exception) {
+                DisplayError(Messages.ErrorUnableToCreateTaffyFeed, exception);
+            }
+        }
+
+        private string GetEncodedUrl() {
+            string result;
             var urlInputText = UrlInputTextBox.Text;
-            if (Uri.IsWellFormedUriString(urlInputText, UriKind.Absolute)) {
+            if (IsUrlAbsoluteAndValid(urlInputText)) {
                 var feedPathAbsoluteUrl = _urlTransformer.ConvertRelativeUrlToAbsoluteUrl("~/Feed.aspx");
                 var urlEncodedUrl = Server.UrlEncode(urlInputText);
-                resultText = feedPathAbsoluteUrl + "?source=" + urlEncodedUrl;
+                result = feedPathAbsoluteUrl + "?source=" + urlEncodedUrl;
             }
             else if (string.Empty.Equals(urlInputText)) {
-                resultText = string.Empty;
+                result = string.Empty;
             }
             else {
-                resultText = Messages.ErrorUrlNotWellFormed;
+                result = Messages.ErrorUrlNotWellFormed;
             }
-            UrlEncodeResults.Text = resultText;
+            return result;
         }
 
         protected void OpmlDownloadLinkButton_Click(object sender, EventArgs e) {
             var taffyFeedOpml = _userCache.TaffyFeedOpml;
-            ServeTaffyFeedOpmlFile(taffyFeedOpml.Filename, taffyFeedOpml.Contents);
+            try {
+                ServeTaffyFeedOpmlFile(taffyFeedOpml.Filename, taffyFeedOpml.Contents);
+            }
+            catch (Exception exception) {
+                DisplayError(Messages.ErrorUnableToServeFile, exception);
+            }
         }
 
         private void ServeTaffyFeedOpmlFile(string filename, string contents) {
