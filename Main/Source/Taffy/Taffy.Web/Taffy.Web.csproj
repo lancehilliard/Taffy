@@ -158,8 +158,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateFeed.aspx" />
+    <Content Include="css\impromptu.css" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorReporting.aspx" />
+    <Content Include="js\jquery-impromptu.2.8.min.js" />
     <Content Include="js\jquery.watermarkinput.js" />
     <Content Include="LameSetup.aspx" />
     <Content Include="Taffy.Master" />

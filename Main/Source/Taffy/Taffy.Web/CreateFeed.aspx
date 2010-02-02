@@ -12,7 +12,6 @@
 
             $("#<%= PodcatcherTaffyAddressTextBox.ClientID %>").Watermark("<%= PodcatcherTaffyAddressTextBoxWatermark %>");
             $("#<%= UrlInputTextBox.ClientID %>").Watermark("<%= UrlInputTextBoxWatermark %>");
-            
         });
     </script>
 </asp:Content>

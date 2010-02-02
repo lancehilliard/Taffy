@@ -1,5 +1,6 @@
 namespace Taffy.Configuration {
     public class Constants {
+        public const string AlertScriptKey = "AlertScript";
         public const string OpmlFilenamePrefix = "Taffy_";
         public const string DownloadResponseContentType = "application/octet-stream";
         public const string XmlResponseContentType = "application/xml";
