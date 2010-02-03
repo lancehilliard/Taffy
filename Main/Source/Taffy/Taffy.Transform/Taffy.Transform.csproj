@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyVersion.cs" />
     <Compile Include="Audio\IAudioTransformer.cs" />
     <Compile Include="Audio\IAudioTransformerFactory.cs" />
     <Compile Include="Audio\Mp3TransformerFactory.cs" />

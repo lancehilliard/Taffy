@@ -51,10 +51,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationCache.cs" />
+    <Compile Include="AssemblyVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserCache.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Taffy.Configuration\Taffy.Configuration.csproj">
+      <Project>{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}</Project>
+      <Name>Taffy.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Taffy.Data\Taffy.Data.csproj">
       <Project>{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}</Project>
       <Name>Taffy.Data</Name>
