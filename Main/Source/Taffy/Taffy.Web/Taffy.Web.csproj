@@ -67,7 +67,7 @@
     <Content Include="images\button.png" />
     <Content Include="images\wrap-bg-left.png" />
     <Content Include="images\wrap-bg-right.png" />
-    <Content Include="lib\Elmah.dll" />
+    <None Include="lib\Elmah.dll" />
     <Content Include="tools\libltdl-7.dll" />
     <Content Include="tools\libmpg123-0.dll" />
     <Content Include="tools\mpg123.exe" />
@@ -164,6 +164,7 @@
     <Content Include="js\jquery-impromptu.2.8.min.js" />
     <Content Include="js\jquery.watermarkinput.js" />
     <Content Include="LameSetup.aspx" />
+    <None Include="lib\UltiDevCassiniServerConfiguration.dll" />
     <Content Include="Taffy.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
