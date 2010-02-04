@@ -6,6 +6,7 @@ using Elmah;
 
 namespace Taffy.Configuration {
     public class Settings {
+
         public static string Mpg123FileName {
             get {
                 return HostingEnvironment.MapPath(Constants.Mpg123VirtualPathFileName);
@@ -28,7 +29,7 @@ namespace Taffy.Configuration {
         }
 
         public static int NumberOfHoursToCacheStretchedPodcasts {
-            get { return Convert.ToInt32(ConfigurationManager.AppSettings["NumberOfHoursToCacheStretchedPodcasts"] ?? Constants.NumberOfHoursToCacheStretchedPodcasts.ToString()); }
+            get { return Convert.ToInt32(ConfigurationManager.AppSettings["NumberOfHoursToCacheStretchedPodcasts"] ?? Constants.NumberOfHoursToCacheStretchedPodcastsDefault.ToString()); }
         }
 
         public static TransformerTypes TransformerType {
@@ -43,6 +44,24 @@ namespace Taffy.Configuration {
                 }
                 return transformerType;
             }
+        }
+
+        public static int ErrorFeedbackConnectionTimeoutInSeconds {
+            get { return Convert.ToInt32(ConfigurationManager.AppSettings["ErrorFeedbackConnectionTimeoutInSeconds"] ?? Constants.ErrorFeedbackConnectionTimeoutInSecondsDefault.ToString()); }
+        }
+
+        public static bool ErrorFeedbackEnabled {
+            get {
+#if DEBUG
+                return true;
+#endif
+                bool result;
+                if (!bool.TryParse(ConfigurationManager.AppSettings["ErrorFeedbackEnabled"], out result)) {
+                    result = Constants.ErrorFeedbackEnabledDefault;
+                }
+                return result;
+            }
+
         }
     }
 }

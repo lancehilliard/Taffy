@@ -1,5 +1,8 @@
 namespace Taffy.Configuration {
     public class Constants {
+        public const bool ErrorFeedbackEnabledDefault = false;
+        public const int ErrorFeedbackConnectionTimeoutInSecondsDefault = 5;
+        public const string ErrorFeedbackUrlTemplate = "http://digitalcreations.cc/taffy/error_service.php?message={0}&stacktrace={1}&asset={2}";
         public const string AlertScriptKey = "AlertScript";
         public const string OpmlFilenamePrefix = "Taffy_";
         public const string DownloadResponseContentType = "application/octet-stream";
@@ -12,7 +15,7 @@ namespace Taffy.Configuration {
         public const string Mpg123VirtualPathFileName = "~/tools/mpg123.exe";
         public const string WebResourceFilename = "WebResource.axd";
         public const TransformerTypes TransformerTypeDefault = TransformerTypes.CommandLine;
-        public const int NumberOfHoursToCacheStretchedPodcasts = 0;
+        public const int NumberOfHoursToCacheStretchedPodcastsDefault = 0;
         public const string FavIconFilename = "favicon.ico";
         public const string RssUnknownLength = "0";
         public const string DebugUrlParameterName = "debug";
