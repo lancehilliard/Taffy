@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Web;
 using Taffy.Configuration;
 using Taffy.Memory;
@@ -9,6 +10,29 @@ namespace Taffy.Web {
     public class Global : HttpApplication {
         private static readonly IUrlyTransformer UrlyTransformer = new UrlyTransformer(new ApplicationCache());
         private static readonly List<string> IgnorableFileNames = new List<string> { Constants.FavIconFilename, Constants.WebResourceFilename };
+
+        protected void Application_Error(object sender, EventArgs e) {
+            if (Settings.ErrorFeedbackEnabled) {
+                var exception = Server.GetLastError().GetBaseException();
+                var asset = Request[Constants.FileSourceParameterName] ?? Request.RawUrl;
+                SendErrorFeedback(exception, asset);
+            }
+        }
+
+        private void SendErrorFeedback(Exception exception, string asset) {
+            try {
+                var message = Server.UrlEncode(exception.Message);
+                var stackTrace = Server.UrlEncode(exception.StackTrace);
+                asset = Server.UrlEncode(asset);
+                var errorFeedbackUrl = string.Format(Constants.ErrorFeedbackUrlTemplate, message, stackTrace, asset);
+                var webRequest = WebRequest.Create(errorFeedbackUrl);
+                webRequest.Timeout = 1000 * Settings.ErrorFeedbackConnectionTimeoutInSeconds;
+                webRequest.GetResponse();
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex);
+            }
+        }
 
         protected void Application_BeginRequest(object sender, EventArgs e) {
             RewriteUrl();
