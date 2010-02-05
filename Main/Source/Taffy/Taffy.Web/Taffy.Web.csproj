@@ -125,6 +125,13 @@
     <Compile Include="LameSetup.aspx.designer.cs">
       <DependentUpon>LameSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Preferences.aspx.cs">
+      <DependentUpon>Preferences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Preferences.aspx.designer.cs">
+      <DependentUpon>Preferences.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Taffy.Master.cs">
       <DependentUpon>Taffy.Master</DependentUpon>
@@ -164,6 +171,7 @@
     <Content Include="js\jquery-impromptu.2.8.min.js" />
     <Content Include="js\jquery.watermarkinput.js" />
     <Content Include="LameSetup.aspx" />
+    <Content Include="Preferences.aspx" />
     <Content Include="Taffy.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

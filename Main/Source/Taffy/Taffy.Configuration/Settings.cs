@@ -6,6 +6,8 @@ using Elmah;
 
 namespace Taffy.Configuration {
     public class Settings {
+        private static readonly System.Configuration.Configuration WebConfiguration = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+        private const string ErrorFeedbackEnabledKey = "ErrorFeedbackEnabled";
 
         public static string Mpg123FileName {
             get {
@@ -50,18 +52,28 @@ namespace Taffy.Configuration {
             get { return Convert.ToInt32(ConfigurationManager.AppSettings["ErrorFeedbackConnectionTimeoutInSeconds"] ?? Constants.ErrorFeedbackConnectionTimeoutInSecondsDefault.ToString()); }
         }
 
+        static Settings() {
+#if DEBUG
+            ConfigurationManager.AppSettings.Set(ErrorFeedbackEnabledKey, bool.TrueString);
+#endif
+        }
+
         public static bool ErrorFeedbackEnabled {
             get {
-#if DEBUG
-                return true;
-#endif
                 bool result;
-                if (!bool.TryParse(ConfigurationManager.AppSettings["ErrorFeedbackEnabled"], out result)) {
+                if (!bool.TryParse(ConfigurationManager.AppSettings[ErrorFeedbackEnabledKey], out result)) {
                     result = Constants.ErrorFeedbackEnabledDefault;
                 }
                 return result;
             }
+            set { SetSetting(ErrorFeedbackEnabledKey, value.ToString()); }
+        }
 
+        private static void SetSetting(string key, string value) {
+            ConfigurationManager.AppSettings.Set(key, value);
+            var appSetting = WebConfiguration.AppSettings.Settings[key];
+            appSetting.Value = value;
+            WebConfiguration.Save();
         }
     }
 }
