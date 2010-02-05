@@ -33,6 +33,8 @@
 				<li><a href="Default.aspx">Home</a></li>
 				<li><a href="CreateFeed.aspx">Create Taffy Feed</a></li>
 				<li><a href="ErrorReporting.aspx">Error Reporting</a></li>
+				<li><a href="Preferences.aspx">Preferences</a></li>
+				<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQQA24LU8VEE4" target="_blank">Donate!</a></li>
 			</ul>
 		</div>
 		<div class="clear"></div>

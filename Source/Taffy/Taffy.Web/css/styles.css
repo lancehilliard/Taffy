@@ -285,3 +285,15 @@ LEGEND
 {
 	margin-bottom: 10px;
 }
+
+.preferencesSaveContainer 
+{
+	text-align: right;
+	padding: 3px;
+}
+
+.preferencesCheckBoxInput 
+{
+	vertical-align: top;
+	padding-top: 8px;
+}
