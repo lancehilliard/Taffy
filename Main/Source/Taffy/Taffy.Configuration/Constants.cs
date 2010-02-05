@@ -2,7 +2,7 @@ namespace Taffy.Configuration {
     public class Constants {
         public const bool ErrorFeedbackEnabledDefault = false;
         public const int ErrorFeedbackConnectionTimeoutInSecondsDefault = 5;
-        public const string ErrorFeedbackUrlTemplate = "http://digitalcreations.cc/taffy/error_service.php?message={0}&stacktrace={1}&asset={2}";
+        public const string ErrorFeedbackUrlTemplate = "http://taffy.digitalcreations.cc/error_service.aspx?message={0}&stacktrace={1}&asset={2}";
         public const string AlertScriptKey = "AlertScript";
         public const string OpmlFilenamePrefix = "Taffy_";
         public const string DownloadResponseContentType = "application/octet-stream";
