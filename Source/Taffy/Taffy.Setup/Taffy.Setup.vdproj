@@ -763,7 +763,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Taffy"
         "ProductCode" = "8:{729212A1-B42D-4133-B5EC-1E4B0578B06A}"
-        "PackageCode" = "8:{CAA85460-0130-4FE4-886B-625E5C0B1254}"
+        "PackageCode" = "8:{546A2157-A65F-4C89-A3DB-5D762FCF5DAF}"
         "UpgradeCode" = "8:{4813920D-46AC-4D0D-96A2-BCBF832D0DE7}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -785,7 +785,7 @@
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
-        "PostBuildEvent" = "8:$(ProjectDir)assets\\7z.exe a $(ProjectDir)Taffy-Standalone.7z setup.exe Taffy.Setup.msi\r\ncopy /b $(ProjectDir)assets\\7zS.sfx + $(ProjectDir)assets\\config.txt + $(ProjectDir)Taffy-Standalone.7z $(ProjectDir)Taffy-Standalone.exe\r\ndel $(ProjectDir)Taffy-Standalone.7z"
+        "PostBuildEvent" = "8:$(ProjectDir)assets\\7z.exe a $(ProjectDir)Taffy-Standalone.7z setup.exe Taffy.Setup.msi\r\ncopy /b $(ProjectDir)assets\\7zS.sfx + $(ProjectDir)assets\\config.txt + $(ProjectDir)Taffy-Standalone.7z $(ProjectDir)Taffy-Standalone.exe\r\ndel $(ProjectDir)Taffy-Standalone.7z\r\nexplorer $(ProjectDir)"
         "RunPostBuildEvent" = "3:0"
         }
         "Registry"
