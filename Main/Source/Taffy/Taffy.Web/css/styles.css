@@ -26,6 +26,7 @@ div.header {
 div.title {
 	float:left;
 	width:25%;
+	font-family: “Arial”, Helvetica, sans-serif;
 }
 div.nav {
 	width:75%;

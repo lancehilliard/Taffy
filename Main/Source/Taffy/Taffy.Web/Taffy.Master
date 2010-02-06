@@ -25,7 +25,7 @@
 <div id="wrap">
 	<div class="header">
 		<div class="title">
-			<h1><a href="#">Taffy</a></h1>
+			<h1><asp:HyperLink runat="server" ID="HomeHyperLink" NavigateUrl="~/" Text="Taffy" /><asp:Literal runat="server" ID="BetaLiteral"><sub>beta</sub></asp:Literal></h1>
 			<h2>Stretch your podcasts.</h2>
 		</div>
 		<div class="nav">
