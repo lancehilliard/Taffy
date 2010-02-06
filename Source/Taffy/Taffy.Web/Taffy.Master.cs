@@ -10,7 +10,7 @@ namespace Taffy.Web {
                 HandleGetRequest();
                 BetaLiteral.Visible = Constants.IsBetaRelease;
             }
-            LameNotInstalledContainer.Visible = !System.IO.File.Exists(Settings.LameFileName);
+            LameNotInstalledContainer.Visible = LameSetup.IsLameMissing();
         }
 
         private void HandleGetRequest() {

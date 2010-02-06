@@ -1,3 +1,4 @@
+<%@ Import Namespace="Taffy.Configuration"%>
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Taffy.master.cs" Inherits="Taffy.Web.Taffy" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,7 +53,7 @@
 				</div>
 				<div class="sidebar">			
                     <asp:Panel runat="server" ID="LameNotInstalledContainer">
-                        <h4>Before you use Taffy!</h4>
+                        <h4><%= Messages.LameAdvisoryPanelTitle %></h4>
                         <p>Taffy needs the LAME MP3 Encoder to operate, and it can't find it. <asp:HyperLink runat="server" ID="LameSetupHyperLink" Text="Learn how to setup LAME" NavigateUrl="~/LameSetup.aspx" /> so that Taffy can use it.
                     </asp:Panel>
                     

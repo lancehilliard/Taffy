@@ -9,6 +9,7 @@ namespace Taffy.Configuration {
         public static string ErrorUnableToCreateTaffyFeed = "Unable to create Taffy feed.";
         public static string ErrorUnableToServeFile = "Unable to serve file.";
         public static string ErrorInvalidPodcatcherTaffyAddress = "The Taffy Address is not valid.";
+        public static string LameAdvisoryPanelTitle = "Before you use Taffy!";
 
         public static string ViewErrorReportingForMoreInformation(string message) {
             return "<p>" + message + "</p><p>If Error Reporting is enabled, it may provide more information.</p>";
