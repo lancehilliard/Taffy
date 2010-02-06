@@ -13,5 +13,9 @@ namespace Taffy.Web {
                 LameDownloadHyperLink.NavigateUrl = Constants.DependencyDownloadsUrl;
             }
         }
+
+        public static bool IsLameMissing() {
+            return !System.IO.File.Exists(Settings.LameFileName);
+        }
     }
 }
