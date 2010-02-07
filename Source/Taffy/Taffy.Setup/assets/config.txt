@@ -1,5 +1,0 @@
-﻿;!@Install@!UTF-8!
-RunProgram="setup.exe"
-Directory=""
-Skip="no"
-;!@InstallEnd@!
