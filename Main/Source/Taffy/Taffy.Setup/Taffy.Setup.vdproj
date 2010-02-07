@@ -21,14 +21,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3BABA2BB946D23A5E24743BD346E8780"
+        "MsmKey" = "8:_0FA85FA0CD7C3096532AE7B944E470F2"
         "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3BABA2BB946D23A5E24743BD346E8780"
-        "OwnerKey" = "8:_8E01BA25540D318B6A7DDBC50C292BCC"
+        "MsmKey" = "8:_0FA85FA0CD7C3096532AE7B944E470F2"
+        "OwnerKey" = "8:_BFE39C48B314086E06C10D65314742DD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_12DDCB826A8B4EA11A2EED418B2776FE"
+        "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_12DDCB826A8B4EA11A2EED418B2776FE"
+        "OwnerKey" = "8:_0FA85FA0CD7C3096532AE7B944E470F2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_13DC4C5745A947F085C9282823D060DC"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,61 +57,55 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4A433440D0EA0471E1D0A05213721647"
-        "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4A433440D0EA0471E1D0A05213721647"
-        "OwnerKey" = "8:_8E01BA25540D318B6A7DDBC50C292BCC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_68EC1FD33F9CC14BAFDFF637BF06D19B"
-        "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_68EC1FD33F9CC14BAFDFF637BF06D19B"
-        "OwnerKey" = "8:_3BABA2BB946D23A5E24743BD346E8780"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_72408473A2E74E43B1B0937D13E58A23"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7612F44926BEE8AC5F47157D4EDF7083"
+        "MsmKey" = "8:_77ACE1B7543642B5990CB9D8E4E40773"
         "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7612F44926BEE8AC5F47157D4EDF7083"
-        "OwnerKey" = "8:_8E01BA25540D318B6A7DDBC50C292BCC"
+        "MsmKey" = "8:_77ACE1B7543642B5990CB9D8E4E40773"
+        "OwnerKey" = "8:_BFE39C48B314086E06C10D65314742DD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8E01BA25540D318B6A7DDBC50C292BCC"
+        "MsmKey" = "8:_91C5D462BE594785852B8766323A829A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9F22485C596E12ACBDCE4A8126CFA515"
         "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9FAA91641DB307E86FA7D14C9F212B00"
-        "OwnerKey" = "8:_7612F44926BEE8AC5F47157D4EDF7083"
+        "MsmKey" = "8:_9F22485C596E12ACBDCE4A8126CFA515"
+        "OwnerKey" = "8:_BFE39C48B314086E06C10D65314742DD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_9FAA91641DB307E86FA7D14C9F212B00"
+        "OwnerKey" = "8:_9F22485C596E12ACBDCE4A8126CFA515"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9FAA91641DB307E86FA7D14C9F212B00"
+        "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BFE39C48B314086E06C10D65314742DD"
         "OwnerKey" = "8:_485D74D1975A48DF9091A0E91AC9BA86"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -106,7 +118,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8E01BA25540D318B6A7DDBC50C292BCC"
+        "OwnerKey" = "8:_BFE39C48B314086E06C10D65314742DD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,19 +130,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4A433440D0EA0471E1D0A05213721647"
+        "OwnerKey" = "8:_77ACE1B7543642B5990CB9D8E4E40773"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3BABA2BB946D23A5E24743BD346E8780"
+        "OwnerKey" = "8:_0FA85FA0CD7C3096532AE7B944E470F2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_68EC1FD33F9CC14BAFDFF637BF06D19B"
+        "OwnerKey" = "8:_12DDCB826A8B4EA11A2EED418B2776FE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -142,7 +154,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7612F44926BEE8AC5F47157D4EDF7083"
+        "OwnerKey" = "8:_9F22485C596E12ACBDCE4A8126CFA515"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -339,18 +351,13 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3BABA2BB946D23A5E24743BD346E8780"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0FA85FA0CD7C3096532AE7B944E470F2"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Taffy.Memory, Version=0.5.3689.20585, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Taffy.Memory, Version=0.5.3689.1715, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3BABA2BB946D23A5E24743BD346E8780"
-                    {
-                    "Name" = "8:Taffy.Memory.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Taffy.Memory.dll"
             "TargetName" = "8:"
@@ -370,49 +377,13 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4A433440D0EA0471E1D0A05213721647"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_12DDCB826A8B4EA11A2EED418B2776FE"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Taffy.Sys, Version=0.5.3689.20584, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Taffy.Data, Version=0.5.3689.1714, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4A433440D0EA0471E1D0A05213721647"
-                    {
-                    "Name" = "8:Taffy.Sys.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Taffy.Sys.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A507B71D8C2641B38C83044063D1CCF8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_68EC1FD33F9CC14BAFDFF637BF06D19B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Taffy.Data, Version=0.5.3689.20584, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_68EC1FD33F9CC14BAFDFF637BF06D19B"
-                    {
-                    "Name" = "8:Taffy.Data.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Taffy.Data.dll"
             "TargetName" = "8:"
@@ -430,6 +401,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_13DC4C5745A947F085C9282823D060DC"
+            {
+            "SourcePath" = "8:assets\\Taffy-Standalone.SED"
+            "TargetName" = "8:Taffy-Standalone.SED"
+            "Tag" = "8:"
+            "Folder" = "8:_5BE62EBC5EAE46B18897A0430F1DD901"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_72408473A2E74E43B1B0937D13E58A23"
@@ -452,20 +443,15 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7612F44926BEE8AC5F47157D4EDF7083"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_77ACE1B7543642B5990CB9D8E4E40773"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Taffy.Configuration, Version=0.5.3689.20583, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Taffy.Sys, Version=0.5.3689.1715, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7612F44926BEE8AC5F47157D4EDF7083"
-                    {
-                    "Name" = "8:Taffy.Configuration.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
-            "SourcePath" = "8:Taffy.Configuration.dll"
+            "SourcePath" = "8:Taffy.Sys.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A507B71D8C2641B38C83044063D1CCF8"
@@ -483,20 +469,35 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E01BA25540D318B6A7DDBC50C292BCC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_91C5D462BE594785852B8766323A829A"
+            {
+            "SourcePath" = "8:assets\\setup.bat"
+            "TargetName" = "8:setup.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_5BE62EBC5EAE46B18897A0430F1DD901"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F22485C596E12ACBDCE4A8126CFA515"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Taffy.Transform, Version=0.5.3689.20585, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Taffy.Configuration, Version=0.5.3689.1714, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8E01BA25540D318B6A7DDBC50C292BCC"
-                    {
-                    "Name" = "8:Taffy.Transform.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
-            "SourcePath" = "8:Taffy.Transform.dll"
+            "SourcePath" = "8:Taffy.Configuration.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A507B71D8C2641B38C83044063D1CCF8"
@@ -528,6 +529,32 @@
                     }
                 }
             "SourcePath" = "8:Elmah.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A507B71D8C2641B38C83044063D1CCF8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BFE39C48B314086E06C10D65314742DD"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Taffy.Transform, Version=0.5.3689.1750, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                }
+            "SourcePath" = "8:Taffy.Transform.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A507B71D8C2641B38C83044063D1CCF8"
@@ -655,7 +682,7 @@
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
-        "PostBuildEvent" = "8:$(ProjectDir)assets\\7z.exe a $(ProjectDir)Taffy-Standalone.7z setup.exe Taffy.Setup.msi\r\ncopy /b $(ProjectDir)assets\\7zS.sfx + $(ProjectDir)assets\\config.txt + $(ProjectDir)Taffy-Standalone.7z $(ProjectDir)Taffy-Standalone.exe\r\ndel $(ProjectDir)Taffy-Standalone.7z\r\nexplorer $(ProjectDir)"
+        "PostBuildEvent" = "8:iexpress /N $(ProjectDir)assets\\Taffy-Standalone.SED"
         "RunPostBuildEvent" = "3:0"
         }
         "Registry"
@@ -1153,7 +1180,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_485D74D1975A48DF9091A0E91AC9BA86"
             {
-            "SourcePath" = "8:..\\Taffy.Web\\obj\\Release\\Taffy.Web.dll"
+            "SourcePath" = "8:..\\Taffy.Web\\obj\\Debug\\Taffy.Web.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5BE62EBC5EAE46B18897A0430F1DD901"
