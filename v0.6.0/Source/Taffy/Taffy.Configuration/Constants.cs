@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace Taffy.Configuration {
     public class Constants {
+        public const bool AppendOriginalAudioEnabledDefault = false;
         public const bool ErrorFeedbackEnabledDefault = false;
         public const int ErrorFeedbackConnectionTimeoutInSecondsDefault = 5;
         public const string ErrorFeedbackUrlTemplate = "http://taffy.digitalcreations.cc/error_service.aspx?message={0}&stacktrace={1}&asset={2}";
@@ -32,8 +33,8 @@ namespace Taffy.Configuration {
         public const string FilePageVirtualPath = "~/File.aspx";
         public const string FileSourceParameterName = "source";
         public const string UrlPathSeparator = "/";
-        public const string AssemblyVersion = "0.5.*";
-        public const string AssemblyFileVersion= "0.5.0.0";
+        public const string AssemblyVersion = "0.6.*";
+        public const string AssemblyFileVersion= "0.6.0.0";
         public const bool IsBetaRelease = true;
 
         public const string BuildDateMessageDateFormatString = "yyyyMMddHHmm";

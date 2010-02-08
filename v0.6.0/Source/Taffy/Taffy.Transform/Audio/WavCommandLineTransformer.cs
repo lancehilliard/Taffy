@@ -22,7 +22,7 @@ namespace Taffy.Transform.Audio {
             Process.Execute(Settings.SoundStretchFileName, arguments, true);
         }
 
-        public void Concatenate(string[] inputFiles, string combinedFileName) {
+        public byte[] Concatenate(string[] inputFiles) {
             throw new NotImplementedException();
         }
     }

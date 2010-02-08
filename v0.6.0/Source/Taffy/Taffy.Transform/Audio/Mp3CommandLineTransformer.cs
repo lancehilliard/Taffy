@@ -20,16 +20,14 @@ namespace Taffy.Transform.Audio {
             throw new NotImplementedException();
         }
 
-        public void Concatenate(string[] inputFiles, string combinedFileName) {
+        public byte[] Concatenate(string[] inputFiles) {
             var memoryStream = new MemoryStream();
             foreach (var inputFile in inputFiles) {
                 var inputFileBytes = File.ReadAllBytes(inputFile);
                 memoryStream.Write(inputFileBytes, 0, inputFileBytes.Length);
             }
-            File.WriteAllBytes(combinedFileName, memoryStream.ToArray());
-            //var inputFilesList = string.Join(@"""+""", inputFiles);
-            //var arguments = @"/c copy /b """ + inputFilesList + @""" """ + combinedFileName + @"""";
-            //Process.Execute("cmd", arguments, true);
+            var result = memoryStream.ToArray();
+            return result;
         }
     }
 }
