@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Taffy.Transform.Audio {
     public class Mp3LibraryTransformer : IAudioTransformer {
@@ -11,6 +12,10 @@ namespace Taffy.Transform.Audio {
         }
 
         public void Stretch(string wavFileName, string stretchedWavFileName) {
+            throw new NotImplementedException();
+        }
+
+        public void Concatenate(string[] inputFiles, string combinedFileName) {
             throw new NotImplementedException();
         }
     }

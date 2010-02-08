@@ -66,16 +66,20 @@ namespace Taffy.Web {
                 DownloadFile(sourceHref, sourceFileName);
                 var mp3Transformer = _mp3TransformerFactory.GetTransformer(Settings.TransformerType);
                 var wavTransformer = _wavTransformerFactory.GetTransformer(Settings.TransformerType);
-                string wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName;
-                Files.CreateTemporaryFiles(out wavTempFileName, out stretchedWavTempFileName, out stretchedMp3TempFileName);
+                string wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceMp3TempFileName, combinedMp3TempFileName;
+                Files.CreateTemporaryFiles(out wavTempFileName, out stretchedWavTempFileName, out stretchedMp3TempFileName, out sourceMp3TempFileName, out combinedMp3TempFileName);
                 mp3Transformer.ToWav(sourceFileName, wavTempFileName);
                 wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName);
+                wavTransformer.ToMp3(wavTempFileName, sourceMp3TempFileName);
+                wavTransformer.ToMp3(wavTempFileName, stretchedMp3TempFileName);
                 wavTransformer.ToMp3(stretchedWavTempFileName, stretchedMp3TempFileName);
-                sourceBytes = System.IO.File.ReadAllBytes(stretchedMp3TempFileName);
+                var inputFiles = new[]{ stretchedMp3TempFileName, sourceMp3TempFileName };
+                mp3Transformer.Concatenate(inputFiles, combinedMp3TempFileName);
+                sourceBytes = System.IO.File.ReadAllBytes(combinedMp3TempFileName);
                 if (sourceBytes.Length > 0) {
                     _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
                 }
-                Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName });
+                Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName, sourceMp3TempFileName, combinedMp3TempFileName });
             }
             _applicationCache.Add(cacheKey, sourceBytes);
         }
