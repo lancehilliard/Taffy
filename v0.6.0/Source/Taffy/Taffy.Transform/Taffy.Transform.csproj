@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48C9D3DE-A947-46A9-AC77-E5D19909ADFD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Taffy.Transform</RootNamespace>
+    <AssemblyName>Taffy.Transform</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyVersion.cs">
+      <Link>AssemblyVersion.cs</Link>
+    </Compile>
+    <Compile Include="Audio\IAudioTransformer.cs" />
+    <Compile Include="Audio\IAudioTransformerFactory.cs" />
+    <Compile Include="Audio\Mp3TransformerFactory.cs" />
+    <Compile Include="Audio\Mp3CommandLineTransformer.cs" />
+    <Compile Include="Audio\Mp3LibraryTransformer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrlTransformer.cs" />
+    <Compile Include="UrlyTransformer.cs" />
+    <Compile Include="Audio\WavLibraryTransformer.cs" />
+    <Compile Include="Audio\WavCommandLineTransformer.cs" />
+    <Compile Include="Audio\WavTransformerFactory.cs" />
+    <Compile Include="XmlTransformer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Taffy.Configuration\Taffy.Configuration.csproj">
+      <Project>{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}</Project>
+      <Name>Taffy.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taffy.Memory\Taffy.Memory.csproj">
+      <Project>{99CA8B92-7AC6-442D-A873-2B80F52C9080}</Project>
+      <Name>Taffy.Memory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taffy.Sys\Taffy.Sys.csproj">
+      <Project>{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}</Project>
+      <Name>Taffy.Sys</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

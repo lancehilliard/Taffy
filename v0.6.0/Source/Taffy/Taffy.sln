@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taffy.Web", "Taffy.Web\Taffy.Web.csproj", "{07A49E27-82FB-4FED-8F61-5BDEC5F3AEF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taffy.Configuration", "Taffy.Configuration\Taffy.Configuration.csproj", "{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taffy.Transform", "Taffy.Transform\Taffy.Transform.csproj", "{48C9D3DE-A947-46A9-AC77-E5D19909ADFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taffy.Sys", "Taffy.Sys\Taffy.Sys.csproj", "{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taffy.Memory", "Taffy.Memory\Taffy.Memory.csproj", "{99CA8B92-7AC6-442D-A873-2B80F52C9080}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CED7EC64-0EAB-4D19-B979-2269EAC4B19A}"
+	ProjectSection(SolutionItems) = preProject
+		AssemblyVersion.cs = AssemblyVersion.cs
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taffy.Data", "Taffy.Data\Taffy.Data.csproj", "{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Taffy.Setup", "Taffy.Setup\Taffy.Setup.vdproj", "{91DF3E6F-FDF4-4079-AA05-418A714CBA57}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs09.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Taffy.Configuration\\Taffy.Configuration.csproj
+		SccProjectName1 = Taffy.Configuration
+		SccLocalPath1 = Taffy.Configuration
+		SccProjectUniqueName2 = Taffy.Sys\\Taffy.Sys.csproj
+		SccProjectName2 = Taffy.Sys
+		SccLocalPath2 = Taffy.Sys
+		SccProjectUniqueName3 = Taffy.Transform\\Taffy.Transform.csproj
+		SccProjectName3 = Taffy.Transform
+		SccLocalPath3 = Taffy.Transform
+		SccProjectUniqueName4 = Taffy.Web\\Taffy.Web.csproj
+		SccProjectName4 = Taffy.Web
+		SccLocalPath4 = Taffy.Web
+		SccProjectUniqueName5 = Taffy.Memory\\Taffy.Memory.csproj
+		SccProjectName5 = Taffy.Memory
+		SccLocalPath5 = Taffy.Memory
+		SccProjectUniqueName6 = Taffy.Data\\Taffy.Data.csproj
+		SccProjectName6 = Taffy.Data
+		SccLocalPath6 = Taffy.Data
+		SccProjectUniqueName7 = Taffy.Setup\\Taffy.Setup.vdproj
+		SccProjectName7 = Taffy.Setup
+		SccLocalPath7 = Taffy.Setup
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07A49E27-82FB-4FED-8F61-5BDEC5F3AEF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A49E27-82FB-4FED-8F61-5BDEC5F3AEF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A49E27-82FB-4FED-8F61-5BDEC5F3AEF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A49E27-82FB-4FED-8F61-5BDEC5F3AEF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6C77859-D7EC-4D33-A7C9-F0BF29A66D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48C9D3DE-A947-46A9-AC77-E5D19909ADFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C9D3DE-A947-46A9-AC77-E5D19909ADFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C9D3DE-A947-46A9-AC77-E5D19909ADFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C9D3DE-A947-46A9-AC77-E5D19909ADFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99CA8B92-7AC6-442D-A873-2B80F52C9080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99CA8B92-7AC6-442D-A873-2B80F52C9080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99CA8B92-7AC6-442D-A873-2B80F52C9080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99CA8B92-7AC6-442D-A873-2B80F52C9080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C7CC61-0ED5-4645-8FF6-AA3BDE09DF36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91DF3E6F-FDF4-4079-AA05-418A714CBA57}.Debug|Any CPU.ActiveCfg = Debug
+		{91DF3E6F-FDF4-4079-AA05-418A714CBA57}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
