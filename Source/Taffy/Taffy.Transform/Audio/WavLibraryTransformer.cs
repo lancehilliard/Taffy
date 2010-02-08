@@ -15,7 +15,7 @@ namespace Taffy.Transform.Audio {
             throw new NotImplementedException();
         }
 
-        public void Concatenate(string[] inputFiles, string combinedFileName) {
+        public byte[] Concatenate(string[] inputFiles) {
             throw new NotImplementedException();
         }
     }
