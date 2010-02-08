@@ -21,10 +21,18 @@ namespace Taffy.Transform {
             }
             foreach (var xPathOfNodesToRedirect in xPathsOfNodesToRedirect) {
                 var nodesToRedirect = xmlDocument.SelectNodes(xPathOfNodesToRedirect, xmlNamespaceManager);
+                //CopyOriginals(nodesToRedirect);
                 RedirectUrlNodes(nodesToRedirect);
             }
             return xmlDocument;
         }
+
+        //private static void CopyOriginals(XmlNodeList nodesToCopy) {
+        //    foreach (XmlNode nodeToCopy in nodesToCopy) {
+        //        var copiedNode = nodeToCopy.Clone();
+        //        nodeToCopy.ParentNode.AppendChild(copiedNode);
+        //    }
+        //}
 
         public XmlDocument GetTransformedOpmlXmlDocument(XmlDocument opmlXmlDocument, string taffyAddress) {
             if (opmlXmlDocument != null) {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Web;
 using Taffy.Configuration;
 using Taffy.Sys;
@@ -11,7 +12,7 @@ namespace Taffy.Transform.Audio {
 
         public void ToMp3(string wavFileName, string mp3FileName) {
             // lame "%FILEPATH%.fast.wav" "%FILEPATH%.fast.mp3"
-            var arguments = @"""" + wavFileName + @""" """ + mp3FileName + @"""";
+            var arguments = @"-t --cbr  """ + wavFileName + @""" """ + mp3FileName + @"""";
             Process.Execute(Settings.LameFileName, arguments, true);
         }
 
@@ -19,6 +20,10 @@ namespace Taffy.Transform.Audio {
             // soundstretch "%FILEPATH%.wav" "%FILEPATH%.fast.wav" -tempo=+35
             var arguments = @"""" + wavFileName + @""" """ + stretchedWavFileName + @""" -tempo=+35";
             Process.Execute(Settings.SoundStretchFileName, arguments, true);
+        }
+
+        public void Concatenate(string[] inputFiles, string combinedFileName) {
+            throw new NotImplementedException();
         }
     }
 }
