@@ -1,6 +1,5 @@
 using System;
 using System.Configuration;
-using System.Web;
 using System.Web.Hosting;
 using Elmah;
 
@@ -14,21 +13,24 @@ namespace Taffy.Configuration {
             get {
                 return HostingEnvironment.MapPath(Constants.Mpg123VirtualPathFileName);
             }
-            //get { return ConfigurationManager.AppSettings["Mpg123FileName"]; }
         }
 
         public static string SoundStretchFileName {
             get {
                 return HostingEnvironment.MapPath(Constants.SoundStretchVirtualPathFileName);
             }
-            //get { return ConfigurationManager.AppSettings["SoundStretchFileName"]; }
         }
 
         public static string LameFileName {
             get {
                 return HostingEnvironment.MapPath(Constants.LameVirtualPathFileName);
             }
-            //get { return ConfigurationManager.AppSettings["LameFileName"]; }
+        }
+
+        public static string Id3FileName {
+            get {
+                return HostingEnvironment.MapPath(Constants.Id3VirtualPathFileName);
+            }
         }
 
         public static int NumberOfHoursToCacheStretchedPodcasts {
