@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Id3Lib;
+using Mp3Lib;
 using Taffy.Configuration;
 using Taffy.Sys;
 
@@ -20,14 +22,5 @@ namespace Taffy.Transform.Audio {
             throw new NotImplementedException();
         }
 
-        public byte[] Concatenate(string[] inputFiles) {
-            var memoryStream = new MemoryStream();
-            foreach (var inputFile in inputFiles) {
-                var inputFileBytes = File.ReadAllBytes(inputFile);
-                memoryStream.Write(inputFileBytes, 0, inputFileBytes.Length);
-            }
-            var result = memoryStream.ToArray();
-            return result;
-        }
     }
 }

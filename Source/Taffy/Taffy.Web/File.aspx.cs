@@ -8,12 +8,16 @@ using Taffy.Memory;
 using Taffy.Sys;
 using Taffy.Transform;
 using Taffy.Transform.Audio;
+using Taffy.Transform.File;
+using Taffy.Transform.Id3;
 
 namespace Taffy.Web {
     public partial class File : BasePage {
         private IUrlTransformer _urlTransformer;
         private IAudioTransformerFactory _mp3TransformerFactory;
         private IAudioTransformerFactory _wavTransformerFactory;
+        private IId3TransformerFactory _id3TransformerFactory;
+        private IFileTransformerFactory _fileTransformerFactory;
         private IApplicationCache _applicationCache;
 
         protected void Page_Init(object sender, EventArgs e) {
@@ -22,6 +26,8 @@ namespace Taffy.Web {
             _urlTransformer = new UrlTransformer(urlyTransformer);
             _mp3TransformerFactory = new Mp3TransformerFactory();
             _wavTransformerFactory = new WavTransformerFactory();
+            _id3TransformerFactory = new Id3TransformerFactory();
+            _fileTransformerFactory = new FileTransformerFactory();
         }
 
         protected void Page_Load(object sender, EventArgs e) {
@@ -66,24 +72,30 @@ namespace Taffy.Web {
                 DownloadFile(sourceHref, sourceFileName);
                 var mp3Transformer = _mp3TransformerFactory.GetTransformer(Settings.TransformerType);
                 var wavTransformer = _wavTransformerFactory.GetTransformer(Settings.TransformerType);
-                string wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceMp3TempFileName;
-                Files.CreateTemporaryFiles(out wavTempFileName, out stretchedWavTempFileName, out stretchedMp3TempFileName, out sourceMp3TempFileName);
+                var id3Transformer = _id3TransformerFactory.GetTransformer(Settings.TransformerType);
+                var fileTransformer = _fileTransformerFactory.GetTransformer();
+                string wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceMp3TempFileName, concatenatedMp3TempFileName;
+                Files.CreateTemporaryFiles(out wavTempFileName, out stretchedWavTempFileName, out stretchedMp3TempFileName, out sourceMp3TempFileName, out concatenatedMp3TempFileName);
                 mp3Transformer.ToWav(sourceFileName, wavTempFileName);
                 wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName);
                 wavTransformer.ToMp3(wavTempFileName, stretchedMp3TempFileName);
                 wavTransformer.ToMp3(stretchedWavTempFileName, stretchedMp3TempFileName);
+                string sourceBytesFileName;
                 if (Settings.AppendOriginalAudioEnabled) {
                     wavTransformer.ToMp3(wavTempFileName, sourceMp3TempFileName);
                     var inputFiles = new[] { stretchedMp3TempFileName, sourceMp3TempFileName };
-                    sourceBytes = mp3Transformer.Concatenate(inputFiles);
+                    fileTransformer.Concatenate(inputFiles, concatenatedMp3TempFileName);
+                    sourceBytesFileName = concatenatedMp3TempFileName;
                 }
                 else {
-                    sourceBytes = System.IO.File.ReadAllBytes(stretchedMp3TempFileName);
+                    sourceBytesFileName = stretchedMp3TempFileName;
                 }
+                id3Transformer.CopyId3Tags(sourceFileName, sourceBytesFileName);
+                sourceBytes = System.IO.File.ReadAllBytes(sourceBytesFileName);
                 if (sourceBytes.Length > 0) {
                     _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
                 }
-                Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName, sourceMp3TempFileName });
+                Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName, sourceMp3TempFileName, concatenatedMp3TempFileName });
             }
             _applicationCache.Add(cacheKey, sourceBytes);
         }
