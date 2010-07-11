@@ -11,7 +11,7 @@ namespace Taffy.Transform.Audio {
             throw new NotImplementedException();
         }
 
-        public void Stretch(string wavFileName, string stretchedWavFileName) {
+        public void Stretch(string wavFileName, string stretchedWavFileName, int accelerationPercentage) {
             throw new NotImplementedException();
         }
 

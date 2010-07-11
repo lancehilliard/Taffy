@@ -11,17 +11,17 @@ namespace Taffy.Transform {
             _urlyTransformer = urlyTransformer;
         }
 
-        public string GetFileUrl(string originalUrl) {
+        public string GetFileUrl(string originalUrl, int accelerationPercentage) {
             var originalUrlKey = _urlyTransformer.Shorten(originalUrl);
             var originalUrlFileName = GetOriginalUrlFileName(originalUrl);
-            var fileRelativeUrl = GetRelativeUrl(originalUrlKey, originalUrlFileName);
+            var fileRelativeUrl = GetRelativeUrl(originalUrlKey, originalUrlFileName, accelerationPercentage);
             var result = ConvertRelativeUrlToAbsoluteUrl(fileRelativeUrl);
             return result;
         }
 
-        private static string GetRelativeUrl(string originalUrlKey, string originalUriFileName) {
+        private static string GetRelativeUrl(string originalUrlKey, string originalUriFileName, int accelerationPercentage) {
             var applicationPath = HttpContext.Current.Request.ApplicationPath;
-            return applicationPath + Constants.UrlPathSeparator + originalUrlKey + Constants.UrlPathSeparator + originalUriFileName;
+            return applicationPath + Constants.UrlPathSeparator + originalUrlKey + Constants.UrlPathSeparator + accelerationPercentage + Constants.UrlPathSeparator + originalUriFileName;
         }
 
         private static string GetOriginalUrlFileName(string originalUrl) {
@@ -37,12 +37,12 @@ namespace Taffy.Transform {
             return result;
         }
 
-        public string GetFeedUrl(string originalUrl, string taffyAddress) {
+        public string GetFeedUrl(string originalUrl, string taffyAddress, int accelerationPercentage) {
             if (!taffyAddress.EndsWith(Constants.UrlPathSeparator)) {
                 taffyAddress += Constants.UrlPathSeparator;
             }
             var urlEncodedOriginalUrl = HttpUtility.UrlEncode(originalUrl);
-            var result = taffyAddress + Constants.FeedFileName + Constants.UrlQueryStringDesignator + Constants.FileSourceParameterName + Constants.QueryStringNameValuePairDelimiter + urlEncodedOriginalUrl;
+            var result = taffyAddress + Constants.FeedFileName + Constants.UrlQueryStringDesignator + Constants.FileSourceParameterName + Constants.QueryStringNameValuePairDelimiter + urlEncodedOriginalUrl + Constants.QueryStringNameValuePairsDelimiter + Constants.AccelerationPercentageParameterName + Constants.QueryStringNameValuePairDelimiter + accelerationPercentage;
             return result;
         }
 
@@ -55,9 +55,9 @@ namespace Taffy.Transform {
     }
 
     public interface IUrlTransformer {
-        string GetFileUrl(string originalUrl);
+        string GetFileUrl(string originalUrl, int accelerationPercentage);
         string GetFileName(string url);
         string ConvertRelativeUrlToAbsoluteUrl(string relativeUrl);
-        string GetFeedUrl(string originalUrl, string taffyAddress);
+        string GetFeedUrl(string originalUrl, string taffyAddress, int accelerationPercentage);
     }
 }

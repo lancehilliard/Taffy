@@ -19,6 +19,7 @@ namespace Taffy.Web {
         private IId3TransformerFactory _id3TransformerFactory;
         private IFileTransformerFactory _fileTransformerFactory;
         private IApplicationCache _applicationCache;
+        private IAccelerationPercentageTransformer _accelerationPercentageTransformer;
 
         protected void Page_Init(object sender, EventArgs e) {
             _applicationCache = new ApplicationCache();
@@ -28,20 +29,23 @@ namespace Taffy.Web {
             _wavTransformerFactory = new WavTransformerFactory();
             _id3TransformerFactory = new Id3TransformerFactory();
             _fileTransformerFactory = new FileTransformerFactory();
+            _accelerationPercentageTransformer = new AccelerationPercentageTransformer();
         }
 
         protected void Page_Load(object sender, EventArgs e) {
             var sourceHref = Request[Constants.FileSourceParameterName];
+            var percent = Request[Constants.AccelerationPercentageParameterName];
             if (sourceHref == null && IsDebugRequest()) {
                 sourceHref = "http://www.theonion.com/content/files/radionews/W09_001_World_Sun.mp3"; 
             }
+            var accelerationPercentage = _accelerationPercentageTransformer.ParseAccelerationPercentage(percent);
             var originalFileName = _urlTransformer.GetFileName(sourceHref);
 
             PrepareResponse(originalFileName);
 
             var downloadFileName = Path.GetTempFileName();
             var cacheKey = Guid.NewGuid().ToString();
-            var myThread = new Thread(() => GetTransformedBytes(sourceHref, downloadFileName, cacheKey)) { IsBackground = true };
+            var myThread = new Thread(() => GetTransformedBytes(sourceHref, downloadFileName, cacheKey, accelerationPercentage)) { IsBackground = true };
             myThread.Start();
 
             // This code will be revisisted when the time comes to put an intro MP3 on the download.  In the meantime, the background thread will still be used, since it's harmless.
@@ -66,7 +70,7 @@ namespace Taffy.Web {
             Response.AddHeader(Constants.ResponseContentDispositionHeaderName, contentDisposition);
         }
 
-        private void GetTransformedBytes(string sourceHref, string sourceFileName, string cacheKey) {
+        private void GetTransformedBytes(string sourceHref, string sourceFileName, string cacheKey, int accelerationPercentage) {
             var sourceBytes = _applicationCache.Get(sourceHref) as byte[];
             if (sourceBytes == null) {
                 DownloadFile(sourceHref, sourceFileName);
@@ -77,7 +81,7 @@ namespace Taffy.Web {
                 string wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceMp3TempFileName, concatenatedMp3TempFileName;
                 Files.CreateTemporaryFiles(out wavTempFileName, out stretchedWavTempFileName, out stretchedMp3TempFileName, out sourceMp3TempFileName, out concatenatedMp3TempFileName);
                 mp3Transformer.ToWav(sourceFileName, wavTempFileName);
-                wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName);
+                wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName, accelerationPercentage);
                 wavTransformer.ToMp3(wavTempFileName, stretchedMp3TempFileName);
                 wavTransformer.ToMp3(stretchedWavTempFileName, stretchedMp3TempFileName);
                 string sourceBytesFileName;

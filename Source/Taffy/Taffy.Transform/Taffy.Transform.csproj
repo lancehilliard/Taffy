@@ -55,6 +55,7 @@
     <Compile Include="..\AssemblyVersion.cs">
       <Link>AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="AccelerationPercentageTransformer.cs" />
     <Compile Include="Audio\IAudioTransformer.cs" />
     <Compile Include="Audio\IAudioTransformerFactory.cs" />
     <Compile Include="File\FileTransformerFactory.cs" />

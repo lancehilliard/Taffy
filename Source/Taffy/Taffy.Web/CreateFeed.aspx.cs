@@ -13,10 +13,16 @@ namespace Taffy.Web {
         private IUserCache _userCache;
         protected const string PodcatcherTaffyAddressTextBoxWatermark = "http://example.com/Taffy/";
         protected const string UrlInputTextBoxWatermark = "http://example.com/path/to/rss_feed";
+        private IAccelerationPercentageTransformer _accelerationPercentageTransformer;
 
         protected void Page_Init(object sender, EventArgs e) {
             _urlTransformer = new UrlTransformer(null);
             _userCache = new UserCache();
+            _accelerationPercentageTransformer = new AccelerationPercentageTransformer();
+            if (!IsPostBack) {
+                SingleFeedAccelerationPercentageTextBox.Text = Constants.AccelerationPercentageDefault.ToString();
+                OpmlFileAccelerationPercentageTextBox.Text = Constants.AccelerationPercentageDefault.ToString();
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e) {
@@ -29,7 +35,8 @@ namespace Taffy.Web {
         private void HandlePostBack() {
             if (IsUrlAbsoluteAndValid(PodcatcherTaffyAddressTextBox.Text)) {
                 if (OpmlFileUpload.HasFile) {
-                    ProcessOpmlFileUpload();
+                    var accelerationPercentage = _accelerationPercentageTransformer.ParseAccelerationPercentage(OpmlFileAccelerationPercentageTextBox.Text);
+                    ProcessOpmlFileUpload(accelerationPercentage);
                 }
             }
             else {
@@ -37,20 +44,20 @@ namespace Taffy.Web {
             }
         }
 
-        private void ProcessOpmlFileUpload() {
+        private void ProcessOpmlFileUpload(int accelerationPercentage) {
             try {
-                _userCache.TaffyFeedOpml = GenerateTaffyOpmlFile();
+                _userCache.TaffyFeedOpml = GenerateTaffyOpmlFile(accelerationPercentage);
             }
             catch (Exception exception) {
                 DisplayError(Messages.ErrorUnableToCreateOpmlFile, exception);
             }
         }
 
-        private TaffyFeedOpml GenerateTaffyOpmlFile() {
+        private TaffyFeedOpml GenerateTaffyOpmlFile(int accelerationPercentage) {
             IXmlTransformer xmlTransformer = new XmlTransformer(_urlTransformer);
             var opmlXmlDocument = new XmlDocument();
             opmlXmlDocument.Load(OpmlFileUpload.FileContent);
-            var transformedOpmlXmlDocument = xmlTransformer.GetTransformedOpmlXmlDocument(opmlXmlDocument, PodcatcherTaffyAddressTextBox.Text);
+            var transformedOpmlXmlDocument = xmlTransformer.GetTransformedOpmlXmlDocument(opmlXmlDocument, PodcatcherTaffyAddressTextBox.Text, accelerationPercentage);
             var result = new TaffyFeedOpml { Filename = Constants.OpmlFilenamePrefix + OpmlFileUpload.FileName, Contents = transformedOpmlXmlDocument.InnerXml };
             return result;
         }
@@ -79,7 +86,8 @@ namespace Taffy.Web {
             if (IsUrlAbsoluteAndValid(urlInputText)) {
                 var feedPathAbsoluteUrl = _urlTransformer.ConvertRelativeUrlToAbsoluteUrl("~/Feed.aspx");
                 var urlEncodedUrl = Server.UrlEncode(urlInputText);
-                result = feedPathAbsoluteUrl + "?source=" + urlEncodedUrl;
+                var accelerationPercentage = _accelerationPercentageTransformer.ParseAccelerationPercentage(SingleFeedAccelerationPercentageTextBox.Text);
+                result = feedPathAbsoluteUrl + Constants.UrlQueryStringDesignator + "source" + Constants.QueryStringNameValuePairDelimiter + urlEncodedUrl + Constants.QueryStringNameValuePairsDelimiter + Constants.AccelerationPercentageParameterName + Constants.QueryStringNameValuePairDelimiter + accelerationPercentage;
             }
             else if (string.Empty.Equals(urlInputText)) {
                 result = string.Empty;
