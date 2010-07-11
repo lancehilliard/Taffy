@@ -55,11 +55,15 @@ namespace Taffy.Web {
         }
 
         private static int GetAccelerationPercentage(string localPathWithinApplication) {
-            var firstSlashIndex = localPathWithinApplication.IndexOf(Constants.UrlPathSeparator) + 1;
+            var result = Constants.AccelerationPercentageDefault;
+            var firstSlashIndex = localPathWithinApplication.IndexOf(Constants.UrlPathSeparator);
             var lastSlashIndex = localPathWithinApplication.LastIndexOf(Constants.UrlPathSeparator);
-            var length = lastSlashIndex - firstSlashIndex;
-            var percent = localPathWithinApplication.Substring(firstSlashIndex, length);
-            var result = AccelerationPercentageTransformer.ParseAccelerationPercentage(percent);
+            if (firstSlashIndex != lastSlashIndex) {
+                var firstAccelerationPercentageCharacterIndex = firstSlashIndex + 1;
+                var length = lastSlashIndex - firstAccelerationPercentageCharacterIndex;
+                var percent = localPathWithinApplication.Substring(firstAccelerationPercentageCharacterIndex, length);
+                result = AccelerationPercentageTransformer.ParseAccelerationPercentage(percent);
+            }
             return result;
         }
 
