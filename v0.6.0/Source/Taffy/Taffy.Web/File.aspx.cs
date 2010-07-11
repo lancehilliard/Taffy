@@ -71,7 +71,8 @@ namespace Taffy.Web {
         }
 
         private void GetTransformedBytes(string sourceHref, string sourceFileName, string cacheKey, int accelerationPercentage) {
-            var sourceBytes = _applicationCache.Get(sourceHref) as byte[];
+            string internalCacheKey = sourceHref + accelerationPercentage;
+            var sourceBytes = _applicationCache.Get(internalCacheKey) as byte[];
             if (sourceBytes == null) {
                 DownloadFile(sourceHref, sourceFileName);
                 var mp3Transformer = _mp3TransformerFactory.GetTransformer(Settings.TransformerType);
@@ -97,7 +98,7 @@ namespace Taffy.Web {
                 id3Transformer.CopyId3Tags(sourceFileName, sourceBytesFileName);
                 sourceBytes = System.IO.File.ReadAllBytes(sourceBytesFileName);
                 if (sourceBytes.Length > 0) {
-                    _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
+                    _applicationCache.Add(internalCacheKey, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
                 }
                 Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName, sourceMp3TempFileName, concatenatedMp3TempFileName });
             }
