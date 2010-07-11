@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace Taffy.Configuration {
     public class Constants {
+        public static int AccelerationPercentageDefault = 35;
+        public const string QueryStringNameValuePairsDelimiter = "&";
+        public const string AccelerationPercentageParameterName = "percent";
         public const bool AppendOriginalAudioEnabledDefault = false;
         public const bool ErrorFeedbackEnabledDefault = false;
         public const int ErrorFeedbackConnectionTimeoutInSecondsDefault = 5;

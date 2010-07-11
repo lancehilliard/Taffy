@@ -34,11 +34,13 @@
 
 <fieldset><legend>Create Single Taffy Feed</legend>
         <div class="urlContainer"><span class="urlLabel">Original RSS URL:</span><asp:TextBox runat="server" ID="UrlInputTextBox" CssClass="urlTextBox" /></div>
+        <div><span class="urlLabel">Accelerate Speed:</span><asp:TextBox runat="server" ID="SingleFeedAccelerationPercentageTextBox" CssClass="accelerationPercentageTextBox" /> %</div>
         <div class="urlContainer"><span class="urlLabel">Taffy Feed:</span><asp:TextBox runat="server" ID="UrlEncodeResults" CssClass="urlEncodedTextBox" /></div>
         </fieldset>
 
 <fieldset><legend>Generate OPML File of Taffy Feeds</legend>
         <div class="urlContainer"><span class="urlLabel">Original OPML File: </span><asp:FileUpload runat="server" ID="OpmlFileUpload" CssClass="urlTextBox" /></div>
+        <div><span class="urlLabel">Accelerate Speed:</span><asp:TextBox runat="server" ID="OpmlFileAccelerationPercentageTextBox" CssClass="accelerationPercentageTextBox" /> %</div>
         <asp:Panel runat="server" ID="OpmlDownloadPanel" CssClass="urlContainer"><span class="urlLabel">Taffy OPML File: </span><asp:LinkButton runat="server" ID="OpmlDownloadLinkButton" OnClick="OpmlDownloadLinkButton_Click" Text="Download Taffy OPML File" /></asp:Panel>
         </fieldset>
 <div align="right">

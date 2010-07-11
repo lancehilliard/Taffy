@@ -16,9 +16,9 @@ namespace Taffy.Transform.Audio {
             Process.Execute(Settings.LameFileName, arguments, true);
         }
 
-        public void Stretch(string wavFileName, string stretchedWavFileName) {
+        public void Stretch(string wavFileName, string stretchedWavFileName, int accelerationPercentage) {
             // soundstretch "%FILEPATH%.wav" "%FILEPATH%.fast.wav" -tempo=+35
-            var arguments = @"""" + wavFileName + @""" """ + stretchedWavFileName + @""" -tempo=+35";
+            var arguments = @"""" + wavFileName + @""" """ + stretchedWavFileName + @""" -tempo=+" + accelerationPercentage;
             Process.Execute(Settings.SoundStretchFileName, arguments, true);
         }
 
