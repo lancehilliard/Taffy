@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Web;
 using Taffy.Configuration;
 using Taffy.Memory;
@@ -25,10 +27,16 @@ namespace Taffy.Web {
                 var message = Server.UrlEncode(exception.Message);
                 var stackTrace = Server.UrlEncode(exception.StackTrace);
                 asset = Server.UrlEncode(asset);
-                var errorFeedbackUrl = string.Format(Constants.ErrorFeedbackUrlTemplate, message, stackTrace, asset);
-                var webRequest = WebRequest.Create(errorFeedbackUrl);
+                var webRequest = WebRequest.Create(Constants.ErrorFeedbackUrl);
+                webRequest.Method = "POST";
+                var postData = string.Format("message={0}&stacktrace={1}&asset={2}", message, stackTrace, asset);
                 webRequest.Timeout = 1000 * Settings.ErrorFeedbackConnectionTimeoutInSeconds;
-                webRequest.GetResponse();
+                webRequest.ContentType = "application/x-www-form-urlencoded";
+                webRequest.ContentLength = postData.Length;
+                var newStream = webRequest.GetRequestStream();
+                var data = new ASCIIEncoding().GetBytes(postData);
+                newStream.Write(data, 0, data.Length);
+                newStream.Close();
             }
             catch (Exception ex) {
                 Console.WriteLine(ex);

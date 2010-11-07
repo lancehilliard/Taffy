@@ -3,13 +3,13 @@ using System.Reflection;
 
 namespace Taffy.Configuration {
     public class Constants {
-        public static int AccelerationPercentageDefault = 35;
+        public const int AccelerationPercentageDefault = 35;
+        public const string ErrorFeedbackUrl = "http://taffy.digitalcreations.cc/error_service.aspx";
         public const string QueryStringNameValuePairsDelimiter = "&";
         public const string AccelerationPercentageParameterName = "percent";
         public const bool AppendOriginalAudioEnabledDefault = false;
         public const bool ErrorFeedbackEnabledDefault = false;
         public const int ErrorFeedbackConnectionTimeoutInSecondsDefault = 5;
-        public const string ErrorFeedbackUrlTemplate = "http://taffy.digitalcreations.cc/error_service.aspx?message={0}&stacktrace={1}&asset={2}";
         public const string AlertScriptKey = "AlertScript";
         public const string OpmlFilenamePrefix = "Taffy_";
         public const string DownloadResponseContentType = "application/octet-stream";
