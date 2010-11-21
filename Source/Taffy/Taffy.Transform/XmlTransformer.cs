@@ -14,26 +14,34 @@ namespace Taffy.Transform {
             _urlTransformer = urlTransformer;
         }
 
-        public XmlDocument GetTransformedFeedXmlDocument(XmlDocument xmlDocument, Dictionary<string, string> xmlNamespacesToUseWhenSelectingNodes, List<string> xPathsOfNodesToRedirect, string destinationRelativeUrlBase) {
+        public XmlDocument GetTransformedFeedXmlDocument(XmlDocument xmlDocument, Dictionary<string, string> xmlNamespacesToUseWhenSelectingNodes, List<string> xPathsOfNodesToRedirect, string destinationRelativeUrlBase, int accelerationPercentage) {
             var xmlNamespaceManager = new XmlNamespaceManager(xmlDocument.NameTable);
             foreach (var xmlNamespace in xmlNamespacesToUseWhenSelectingNodes) {
                 xmlNamespaceManager.AddNamespace(xmlNamespace.Key, xmlNamespace.Value);
             }
             foreach (var xPathOfNodesToRedirect in xPathsOfNodesToRedirect) {
                 var nodesToRedirect = xmlDocument.SelectNodes(xPathOfNodesToRedirect, xmlNamespaceManager);
-                RedirectUrlNodes(nodesToRedirect);
+                //CopyOriginals(nodesToRedirect);
+                RedirectUrlNodes(nodesToRedirect, accelerationPercentage);
             }
             return xmlDocument;
         }
 
-        public XmlDocument GetTransformedOpmlXmlDocument(XmlDocument opmlXmlDocument, string taffyAddress) {
+        //private static void CopyOriginals(XmlNodeList nodesToCopy) {
+        //    foreach (XmlNode nodeToCopy in nodesToCopy) {
+        //        var copiedNode = nodeToCopy.Clone();
+        //        nodeToCopy.ParentNode.AppendChild(copiedNode);
+        //    }
+        //}
+
+        public XmlDocument GetTransformedOpmlXmlDocument(XmlDocument opmlXmlDocument, string taffyAddress, int accelerationPercentage) {
             if (opmlXmlDocument != null) {
                 var outlineNodes = opmlXmlDocument.SelectNodes("//outline[@xmlUrl!='']");
                 if (outlineNodes != null) {
                     foreach (XmlNode outlineNode in outlineNodes) {
                         var xmlUrlAttribute = outlineNode.Attributes[XmlUrlAttributeName];
                         if (xmlUrlAttribute != null) {
-                            var taffyFeedXmlUrl = _urlTransformer.GetFeedUrl(xmlUrlAttribute.Value, taffyAddress);
+                            var taffyFeedXmlUrl = _urlTransformer.GetFeedUrl(xmlUrlAttribute.Value, taffyAddress, accelerationPercentage);
                             xmlUrlAttribute.Value = taffyFeedXmlUrl;
                         }
                     }
@@ -42,11 +50,11 @@ namespace Taffy.Transform {
             return opmlXmlDocument;
         }
 
-        private void RedirectUrlNodes(XmlNodeList enclosureNodes) {
+        private void RedirectUrlNodes(XmlNodeList enclosureNodes, int accelerationPercentage) {
             if (enclosureNodes != null) {
                 foreach (XmlNode enclosureNode in enclosureNodes) {
                     var urlAttribute = enclosureNode.Attributes[RssUrlAttributeName];
-                    RedirectUrlValue(urlAttribute);
+                    RedirectUrlValue(urlAttribute, accelerationPercentage);
                     var lengthAttribute = enclosureNode.Attributes[RssLengthAttributeName];
                     if (lengthAttribute != null) {
                         lengthAttribute.Value = Constants.RssUnknownLength;
@@ -55,17 +63,17 @@ namespace Taffy.Transform {
             }
         }
 
-        private void RedirectUrlValue(XmlNode xmlAttribute) {
+        private void RedirectUrlValue(XmlNode xmlAttribute, int accelerationPercentage) {
             if (xmlAttribute != null) {
                 var originalUrl = xmlAttribute.Value;
-                var newAttributeValue = _urlTransformer.GetFileUrl(originalUrl);
+                var newAttributeValue = _urlTransformer.GetFileUrl(originalUrl, accelerationPercentage);
                 xmlAttribute.Value = newAttributeValue;
             }
         }
     }
 
     public interface IXmlTransformer {
-        XmlDocument GetTransformedFeedXmlDocument(XmlDocument xmlDocument, Dictionary<string, string> xmlNamespacesToUseWhenSelectingNodes, List<string> xPathsOfNodesToRedirect, string destinationRelativeUrlBase);
-        XmlDocument GetTransformedOpmlXmlDocument(XmlDocument opmlXmlDocument, string taffyAddress);
+        XmlDocument GetTransformedFeedXmlDocument(XmlDocument xmlDocument, Dictionary<string, string> xmlNamespacesToUseWhenSelectingNodes, List<string> xPathsOfNodesToRedirect, string destinationRelativeUrlBase, int accelerationPercentage);
+        XmlDocument GetTransformedOpmlXmlDocument(XmlDocument opmlXmlDocument, string taffyAddress, int accelerationPercentage);
     }
 }

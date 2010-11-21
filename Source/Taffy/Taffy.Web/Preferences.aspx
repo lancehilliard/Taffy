@@ -4,11 +4,12 @@
 <p>This page enables you to change certain aspects about how Taffy functions.</p>
 <table>
 <tr>
-<td class="preferencesCheckBoxInput">
-<asp:CheckBox runat="server" ID="ErrorFeedbackEnabledCheckBox" />
-</td>
-<td><b>Error Reporting</b><br />When enabled, this features sends anonymous error information to the developers automatically.
-</td>
+<td class="preferencesCheckBoxInput"><asp:CheckBox runat="server" ID="ErrorFeedbackEnabledCheckBox" /></td>
+<td><b>Error Reporting</b><br />When enabled, this feature sends anonymous error information to the developers automatically.</td>
+</tr>
+<tr>
+<td class="preferencesCheckBoxInput"><asp:CheckBox runat="server" ID="AppendOriginalAudioEnabledCheckBox" /></td>
+<td><b>Append Original Audio</b><br />When enabled, this feature appends the podcast's original audio to the end of the stretched audio -- for every podcast Taffy serves.  This is useful when you come across an episode that just doesn't listen well at your faster speed (note: this will increase download times and disk usage on your podcatcher).</td>
 </tr>
 </table>
 <hr />

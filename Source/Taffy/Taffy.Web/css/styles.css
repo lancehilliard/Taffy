@@ -298,3 +298,8 @@ LEGEND
 	vertical-align: top;
 	padding-top: 8px;
 }
+
+.accelerationPercentageTextBox 
+{
+	width: 25px;
+}

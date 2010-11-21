@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Taffy.Transform.Audio {
     public class WavLibraryTransformer : IAudioTransformer {
@@ -10,8 +11,9 @@ namespace Taffy.Transform.Audio {
             throw new NotImplementedException();
         }
 
-        public void Stretch(string wavFileName, string stretchedWavFileName) {
+        public void Stretch(string wavFileName, string stretchedWavFileName, int accelerationPercentage) {
             throw new NotImplementedException();
         }
+
     }
 }

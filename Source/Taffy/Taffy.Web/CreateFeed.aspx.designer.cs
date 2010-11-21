@@ -32,6 +32,15 @@ namespace Taffy.Web {
         protected global::System.Web.UI.WebControls.TextBox UrlInputTextBox;
         
         /// <summary>
+        /// SingleFeedAccelerationPercentageTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SingleFeedAccelerationPercentageTextBox;
+        
+        /// <summary>
         /// UrlEncodeResults control.
         /// </summary>
         /// <remarks>
@@ -48,6 +57,15 @@ namespace Taffy.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload OpmlFileUpload;
+        
+        /// <summary>
+        /// OpmlFileAccelerationPercentageTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox OpmlFileAccelerationPercentageTextBox;
         
         /// <summary>
         /// OpmlDownloadPanel control.

@@ -8,13 +8,18 @@ using Taffy.Memory;
 using Taffy.Sys;
 using Taffy.Transform;
 using Taffy.Transform.Audio;
+using Taffy.Transform.File;
+using Taffy.Transform.Id3;
 
 namespace Taffy.Web {
     public partial class File : BasePage {
         private IUrlTransformer _urlTransformer;
         private IAudioTransformerFactory _mp3TransformerFactory;
         private IAudioTransformerFactory _wavTransformerFactory;
+        private IId3TransformerFactory _id3TransformerFactory;
+        private IFileTransformerFactory _fileTransformerFactory;
         private IApplicationCache _applicationCache;
+        private IAccelerationPercentageTransformer _accelerationPercentageTransformer;
 
         protected void Page_Init(object sender, EventArgs e) {
             _applicationCache = new ApplicationCache();
@@ -22,20 +27,25 @@ namespace Taffy.Web {
             _urlTransformer = new UrlTransformer(urlyTransformer);
             _mp3TransformerFactory = new Mp3TransformerFactory();
             _wavTransformerFactory = new WavTransformerFactory();
+            _id3TransformerFactory = new Id3TransformerFactory();
+            _fileTransformerFactory = new FileTransformerFactory();
+            _accelerationPercentageTransformer = new AccelerationPercentageTransformer();
         }
 
         protected void Page_Load(object sender, EventArgs e) {
             var sourceHref = Request[Constants.FileSourceParameterName];
+            var percent = Request[Constants.AccelerationPercentageParameterName];
             if (sourceHref == null && IsDebugRequest()) {
                 sourceHref = "http://www.theonion.com/content/files/radionews/W09_001_World_Sun.mp3"; 
             }
+            var accelerationPercentage = _accelerationPercentageTransformer.ParseAccelerationPercentage(percent);
             var originalFileName = _urlTransformer.GetFileName(sourceHref);
 
             PrepareResponse(originalFileName);
 
             var downloadFileName = Path.GetTempFileName();
             var cacheKey = Guid.NewGuid().ToString();
-            var myThread = new Thread(() => GetTransformedBytes(sourceHref, downloadFileName, cacheKey)) { IsBackground = true };
+            var myThread = new Thread(() => GetTransformedBytes(sourceHref, downloadFileName, cacheKey, accelerationPercentage)) { IsBackground = true };
             myThread.Start();
 
             // This code will be revisisted when the time comes to put an intro MP3 on the download.  In the meantime, the background thread will still be used, since it's harmless.
@@ -60,22 +70,37 @@ namespace Taffy.Web {
             Response.AddHeader(Constants.ResponseContentDispositionHeaderName, contentDisposition);
         }
 
-        private void GetTransformedBytes(string sourceHref, string sourceFileName, string cacheKey) {
-            var sourceBytes = _applicationCache.Get(sourceHref) as byte[];
+        private void GetTransformedBytes(string sourceHref, string sourceFileName, string cacheKey, int accelerationPercentage) {
+            string internalCacheKey = sourceHref + accelerationPercentage;
+            var sourceBytes = _applicationCache.Get(internalCacheKey) as byte[];
             if (sourceBytes == null) {
                 DownloadFile(sourceHref, sourceFileName);
                 var mp3Transformer = _mp3TransformerFactory.GetTransformer(Settings.TransformerType);
                 var wavTransformer = _wavTransformerFactory.GetTransformer(Settings.TransformerType);
-                string wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName;
-                Files.CreateTemporaryFiles(out wavTempFileName, out stretchedWavTempFileName, out stretchedMp3TempFileName);
+                var id3Transformer = _id3TransformerFactory.GetTransformer(Settings.TransformerType);
+                var fileTransformer = _fileTransformerFactory.GetTransformer();
+                string wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceMp3TempFileName, concatenatedMp3TempFileName;
+                Files.CreateTemporaryFiles(out wavTempFileName, out stretchedWavTempFileName, out stretchedMp3TempFileName, out sourceMp3TempFileName, out concatenatedMp3TempFileName);
                 mp3Transformer.ToWav(sourceFileName, wavTempFileName);
-                wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName);
+                wavTransformer.Stretch(wavTempFileName, stretchedWavTempFileName, accelerationPercentage);
+                wavTransformer.ToMp3(wavTempFileName, stretchedMp3TempFileName);
                 wavTransformer.ToMp3(stretchedWavTempFileName, stretchedMp3TempFileName);
-                sourceBytes = System.IO.File.ReadAllBytes(stretchedMp3TempFileName);
-                if (sourceBytes.Length > 0) {
-                    _applicationCache.Add(sourceHref, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
+                string sourceBytesFileName;
+                if (Settings.AppendOriginalAudioEnabled) {
+                    wavTransformer.ToMp3(wavTempFileName, sourceMp3TempFileName);
+                    var inputFiles = new[] { stretchedMp3TempFileName, sourceMp3TempFileName };
+                    fileTransformer.Concatenate(inputFiles, concatenatedMp3TempFileName);
+                    sourceBytesFileName = concatenatedMp3TempFileName;
                 }
-                Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName });
+                else {
+                    sourceBytesFileName = stretchedMp3TempFileName;
+                }
+                id3Transformer.CopyId3Tags(sourceFileName, sourceBytesFileName);
+                sourceBytes = System.IO.File.ReadAllBytes(sourceBytesFileName);
+                if (sourceBytes.Length > 0) {
+                    _applicationCache.Add(internalCacheKey, sourceBytes, DateTime.Now.AddHours(Settings.NumberOfHoursToCacheStretchedPodcasts));
+                }
+                Files.DeleteFiles(new List<string> { wavTempFileName, stretchedWavTempFileName, stretchedMp3TempFileName, sourceFileName, sourceMp3TempFileName, concatenatedMp3TempFileName });
             }
             _applicationCache.Add(cacheKey, sourceBytes);
         }

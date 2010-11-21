@@ -35,6 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Id3Lib, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Mp3Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -53,8 +55,16 @@
     <Compile Include="..\AssemblyVersion.cs">
       <Link>AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="AccelerationPercentageTransformer.cs" />
     <Compile Include="Audio\IAudioTransformer.cs" />
     <Compile Include="Audio\IAudioTransformerFactory.cs" />
+    <Compile Include="File\FileTransformerFactory.cs" />
+    <Compile Include="File\FileTransformer.cs" />
+    <Compile Include="Id3\Id3CommandLineTransformer.cs" />
+    <Compile Include="Id3\Id3LibraryTransformer.cs" />
+    <Compile Include="Id3\Id3Transformer.cs" />
+    <Compile Include="Id3\Id3TransformerFactory.cs" />
+    <Compile Include="Id3\IId3TransformerFactory.cs" />
     <Compile Include="Audio\Mp3TransformerFactory.cs" />
     <Compile Include="Audio\Mp3CommandLineTransformer.cs" />
     <Compile Include="Audio\Mp3LibraryTransformer.cs" />
@@ -79,6 +89,22 @@
       <Project>{15A87116-F29B-4B1C-B9CF-75B4CFC97C63}</Project>
       <Name>Taffy.Sys</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\Id3Lib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="lib\Mp3Lib.dll">
+    </None>
+    <None Include="lib\Mp3Lib.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="lib\Id3Lib.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="lib\SharpZipLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
